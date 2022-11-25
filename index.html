@@ -4,9 +4,73 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <nav class="lg:px-32 sm:px-6 lg:h-24 h-20 bg-[#6C63FF] flex justify-between items-center">
+            <a href="" class="logo font-['Noto_Sans'] font-semibold flex px-2">
+                <h1 class="text-4xl text-center flex text-white">Careers</h1>
+            </a>
+            <div class="lg:hidden flex  items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4 navbarBurguer">
+                <i class="md:text-2xl text-lg fa-solid fa-bars"></i>
+            </div>
+            <div class="lg:hidden xmark hidden flex items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4">
+                <i class="md:text-2xl text-xl fa-solid fa-xmark"></i>
+            </div>
+            <ul class="lg:flex hidden justify-end items-center">
+                <li>
+                    <a href="#" name="balance" class="text-lg text-white">
+                        Home </a>
+                </li>
+                <li class="ml-5 mr-5">
+                    <a href="#" name="balance" class="text-lg text-white">
+                        Create Job</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="lg:hidden navbarMenu hidden">
+            <ul class="flex flex-col bg-gray-200">
+                <li class="px-4 py-2 group text-lg hover:text-[#D3375C] transition duration-300">
+                    <a href="#" name="balance" class="linkNavbarBurger_balance max-w-full">
+                        <div class="flex items-center">
+                            <i class="mr-2 fa-solid fa-chart-line"></i>
+                            <p>Balance</p>
+                        </div>
+                        <span
+                            class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
+                    </a>
+                </li>
+                <li class="px-4 py-2 text-lg group hover:text-[#D3375C] transition duration-300">
+                    <a href="#" name="categories" class="linkNavbarBurger_categories max-w-full">
+                        <div class="flex items-center">
+                            <i class="mr-2 fa-solid fa-tag"></i>
+                            <p>Categorías</p>
+                        </div>
+                        <span
+                            class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
+                    </a>
+                </li>
+                <li class="px-4 py-2 text-lg group hover:text-[#D3375C] transition duration-300">
+                    <a href="#" name="reports" class="linkNavbarBurger_reports max-w-full">
+                        <div class="flex items-center">
+                            <i class="mr-2 fa-solid fa-chart-pie"></i>
+                            <p>Reportes</p>
+                        </div>
+                        <span
+                            class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="h-96 bg-[url('./assets/creative-woman.svg')] bg-no-repeat">
+       
+    </div>
     <script src="js/script.js"></script>
 </body>
 </html>
