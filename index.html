@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,26 +11,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
-<body>
+
+<body class="font-['Noto_Sans']">
     <header>
-        <nav class="lg:px-32 sm:px-6 lg:h-24 h-20 bg-[#6C63FF] flex justify-between items-center">
-            <a href="" class="logo font-['Noto_Sans'] font-semibold flex px-2">
-                <h1 class="text-4xl text-center flex text-white">Careers</h1>
-            </a>
+        <nav class="lg:px-32 sm:px-6 lg:h-24 h-20 bg-[#B01E68] flex justify-between items-center font-['Noto_Sans']">
+            <div class="flex flex-start">
+                <a href="" class="logo px-2 border-r-2 border-white">
+                    <div class="flex flex-col md:w-60 w-40">
+                        <h1 class="md:text-4xl text-2xl text-center text-[#F49D1A]">Nutris<span
+                                class="italic text-white">en</span><span class="text-white">Acción</span></h1>
+                        <span class="text-xl text-white text-center">x la salud integral</span>
+                    </div>
+                </a>
+                <img src="assets/2720940.png" class="w-12 ml-4" alt="">
+            </div>
             <div class="lg:hidden flex  items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4 navbarBurguer">
-                <i class="md:text-2xl text-lg fa-solid fa-bars"></i>
+                <i class="md:text-2xl text-xl text-[#F49D1A] fa-solid fa-bars"></i>
             </div>
             <div class="lg:hidden xmark hidden flex items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4">
                 <i class="md:text-2xl text-xl fa-solid fa-xmark"></i>
             </div>
             <ul class="lg:flex hidden justify-end items-center">
                 <li>
-                    <a href="#" name="balance" class="text-lg text-white">
-                        Home </a>
+                    <a href="#" name="balance" class="text-xl text-white">
+                        Página principal </a>
                 </li>
                 <li class="ml-5 mr-5">
-                    <a href="#" name="balance" class="text-lg text-white">
-                        Create Job</a>
+                    <a href="#" name="balance" class="text-xl text-white">
+                        Agregar trabajo</a>
                 </li>
             </ul>
         </nav>
@@ -39,7 +48,7 @@
                     <a href="#" name="balance" class="linkNavbarBurger_balance max-w-full">
                         <div class="flex items-center">
                             <i class="mr-2 fa-solid fa-chart-line"></i>
-                            <p>Balance</p>
+                            <p>Página principal</p>
                         </div>
                         <span
                             class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
@@ -49,17 +58,7 @@
                     <a href="#" name="categories" class="linkNavbarBurger_categories max-w-full">
                         <div class="flex items-center">
                             <i class="mr-2 fa-solid fa-tag"></i>
-                            <p>Categorías</p>
-                        </div>
-                        <span
-                            class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
-                    </a>
-                </li>
-                <li class="px-4 py-2 text-lg group hover:text-[#D3375C] transition duration-300">
-                    <a href="#" name="reports" class="linkNavbarBurger_reports max-w-full">
-                        <div class="flex items-center">
-                            <i class="mr-2 fa-solid fa-chart-pie"></i>
-                            <p>Reportes</p>
+                            <p>Agregar trabajo</p>
                         </div>
                         <span
                             class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
@@ -68,9 +67,59 @@
             </ul>
         </div>
     </header>
-    <div class="h-96 bg-[url('./assets/creative-woman.svg')] bg-no-repeat">
-       
-    </div>
+    <section class="h-60 bg-[url('./assets/9-ccu.jpg')] bg-center">
+    </section>
+    <section class="flex justify-center items-center">
+        <div class="flex justify-center items-center flex-col w-3/4">
+            <span class="text-center md:text-3xl text-xl mt-8 text-[#DC3535]">Es difícil tener salud individual si no hay salud
+                colectiva.</span>
+            <span class="text-center md:text-3xl text-xl mt-2 text-[#DC3535]">Se necesita sobreanía alimentaria para proteger a la
+                población</span>
+            <cite class="mt-2 text-[#DC3535]">Jesica Lavia</cite>
+        </div>
+    </section>
+    <section class="search mt-6">
+        <form action="" class="flex flex-col">
+            <div class="flex justify-center md:flex-row flex-col md:w-full md:px-0 px-4">
+                <select name="" id="location" class="p-2 rounded border-2 border-stone-400 ml-2">
+                    <option value="locacion">Locación</option>
+                    <option value="caba">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="gcba">Gran Buenos Aires</option>
+                    <option value="cordoba">Córdoba</option>
+                    <option value="mendoza">Mendoza</option>
+                    <option value="santaFe">Santa Fe</option>
+                    <option value="entreRios">Entre Ríos</option>
+                </select>
+                <select name="" id="specialty" class="p-2 rounded border-2 border-stone-400 ml-2 md:mt-0 mt-2">
+                    <option value="epecialidad">Especialidad</option>
+                    <option value="saludable">Alimentación saludable</option>
+                    <option value="vegana">Alimentación vegana</option>
+                    <option value="vegetariana">Alimentación vegetariana</option>
+                    <option value="infancia">Alimentación primera infancia</option>
+                    <option value="embarazoLactancia">Embarazo y lactancia</option>
+                    <option value="sinTACC">Alimentación sin TACC</option>
+                </select>
+                <select name="" id="experience" class="p-2 rounded border-2 border-stone-400 ml-2 md:mt-0 mt-2">
+                    <option value="experiencia">Experiencia</option>
+                    <option value="recibida">Recibida con matrícula habilitante</option>
+                    <option value="unoATres">1 a 3 años</option>
+                    <option value="cuatroASeis">4 a 6 años</option>
+                </select>
+            </div>
+            <div class="flex justify-center mt-4">
+                <input
+                    class="searchBtn px-6 max-[375px]:px-5 h-[44px] text-white bg-[#DC3535] mr-2 rounded  transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
+                    type="submit" value="Búsqueda" />
+                <input
+                    class="clearBtn px-6 max-[375px]:px-5 h-[44px] text-[#DC3535] bg-white border-solid border-2 border-[#DC3535] rounded hover:bg-violet-300 transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
+                    type="submit" value="Limpiar" />
+            </div>
+        </form>
+    </section>
+    <section class="spinner flex justify-center mt-6">
+        <img class="w-1/5 hidden" src="assets/fruits.gif" alt="">
+    </section>
     <script src="js/script.js"></script>
 </body>
+
 </html>
