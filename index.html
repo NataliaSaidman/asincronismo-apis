@@ -1,12 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
-<body>
+
+<body class="font-['Noto_Sans']">
+    <header>
+        <nav class="lg:px-32 sm:px-6 lg:h-24 h-20 bg-[#B01E68] flex justify-between items-center font-['Noto_Sans']">
+            <div class="flex flex-start">
+                <a href="" class="logo px-2 border-r-2 border-white">
+                    <div class="flex flex-col md:w-60 w-40">
+                        <h1 class="md:text-4xl text-2xl text-center text-[#F49D1A]">Nutris<span
+                                class="italic text-white">en</span><span class="text-white">Acción</span></h1>
+                        <span class="text-xl text-white text-center">x la salud integral</span>
+                    </div>
+                </a>
+                <img src="assets/2720940.png" class="w-12 ml-4" alt="">
+            </div>
+            <div class="lg:hidden flex  items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4 navbarBurguer">
+                <i class="md:text-2xl text-xl text-[#F49D1A] fa-solid fa-bars"></i>
+            </div>
+            <div class="lg:hidden xmark hidden flex items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4">
+                <i class="md:text-2xl text-xl fa-solid fa-xmark"></i>
+            </div>
+            <ul class="lg:flex hidden justify-end items-center">
+                <li>
+                    <a href="#" name="balance" class="text-xl text-white hover:text-[#F49D1A]">
+                        Página principal </a>
+                </li>
+                <li class="ml-5 mr-5">
+                    <a href="#" name="balance" class="text-xl text-white hover:text-[#F49D1A]">
+                        Agregar trabajo</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="lg:hidden navbarMenu hidden">
+            <ul class="flex flex-col bg-gray-200">
+                <li class="px-4 py-2 group text-lg hover:text-[#D3375C] transition duration-300">
+                    <a href="#" name="balance" class="linkNavbarBurger_balance max-w-full">
+                        <div class="flex items-center">
+                            <i class="mr-2 fa-solid fa-chart-line"></i>
+                            <p>Página principal</p>
+                        </div>
+                        <span
+                            class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
+                    </a>
+                </li>
+                <li class="px-4 py-2 text-lg group hover:text-[#D3375C] transition duration-300">
+                    <a href="#" name="categories" class="linkNavbarBurger_categories max-w-full">
+                        <div class="flex items-center">
+                            <i class="mr-2 fa-solid fa-tag"></i>
+                            <p>Agregar trabajo</p>
+                        </div>
+                        <span
+                            class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section class="h-60 bg-[url('./assets/9-ccu.jpg')] bg-center">
+    </section>
+    <div id="newJob" class="hidden sectionNewJob lg:p-16 py-16 px-4 flex justify-center">
+        <section
+            class="lg:max-w-2xl p-5 max-w-none w-full rounded border-2 border-t-8 border-[#F49D1A] shadow-lg shadow-gray-400">
+            <h2 class="lg:text-4xl text-3xl font-bold">Nuevo trabajo</h2>
+            <form action="" class="formNewJob flex flex-col mt-8">
+                <label for="jobTitle" class="mb-1 font-bold">Título del trabajo</label>
+                <input type="text" name="jobTitle" id="jobTitle" placeholder="Título del trabajo"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <label for="jobImg" class="mb-1 font-bold">Imagen del trabajo</label>
+                <input type="text" name="jobImg" id="jobImg" placeholder="url de la imagen"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <label for="description" class="mb-1 font-bold">Descripción</label>
+                <textarea id="description" cols="50" rows="10" placeholder="Escriba la descripción del trabajo"
+                    class="mb-2 p-2 rounded border-2 border-stone-400"></textarea>
+                <label for="tags" class="mb-1 font-bold">Etiquetas</label>
+                <input type="text" name="location" id="location" placeholder="Locación"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input type="text" name="specialty" id="specialty" placeholder="Especialidad"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input type="text" name="experience" id="experience" placeholder="Experiencia"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input
+                    class="addNewJobBtn w-1/5 px-6 max-[375px]:px-5 h-[44px] text-white bg-[#F49D1A] rounded hover:bg-[#FF7000] transition duration-100 cursor-pointer"
+                    type="submit" value="Agregar" />
+            </form>
+        </section>
+    </div>
+    <section class="flex justify-center items-center">
+        <div class="flex justify-center items-center flex-col w-3/4">
+            <span class="text-center md:text-3xl text-xl mt-8 text-[#DC3535]">Es difícil tener salud individual si no
+                hay salud
+                colectiva.</span>
+            <span class="text-center md:text-3xl text-xl mt-2 text-[#DC3535]">Se necesita sobreanía alimentaria para
+                proteger a la
+                población</span>
+            <cite class="mt-2 text-[#DC3535]">Jesica Lavia</cite>
+        </div>
+    </section>
+    <section class="search mt-6">
+        <form action="" class="flex flex-col">
+            <div class="flex justify-center md:flex-row flex-col md:w-full md:px-0 px-4">
+                <select name="" id="location" class="p-2 rounded border-2 border-stone-400 ml-2">
+                    <option value="locacion">Locación</option>
+                    <option value="caba">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="gcba">Gran Buenos Aires</option>
+                    <option value="cordoba">Córdoba</option>
+                    <option value="mendoza">Mendoza</option>
+                    <option value="santaFe">Santa Fe</option>
+                    <option value="entreRios">Entre Ríos</option>
+                </select>
+                <select name="" id="specialty" class="p-2 rounded border-2 border-stone-400 ml-2 md:mt-0 mt-2">
+                    <option value="epecialidad">Especialidad</option>
+                    <option value="saludable">Alimentación saludable</option>
+                    <option value="vegana">Alimentación vegana</option>
+                    <option value="vegetariana">Alimentación vegetariana</option>
+                    <option value="infancia">Alimentación primera infancia</option>
+                    <option value="embarazoLactancia">Embarazo y lactancia</option>
+                    <option value="sinTACC">Alimentación sin TACC</option>
+                </select>
+                <select name="" id="experience" class="p-2 rounded border-2 border-stone-400 ml-2 md:mt-0 mt-2">
+                    <option value="experiencia">Experiencia</option>
+                    <option value="recibida">Recibida con matrícula</option>
+                    <option value="unoATres">1 a 3 años</option>
+                    <option value="cuatroASeis">4 a 6 años</option>
+                </select>
+            </div>
+            <div class="flex justify-center mt-4">
+                <input
+                    class="searchBtn px-6 max-[375px]:px-5 h-[44px] text-white bg-[#DC3535] mr-2 rounded  transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
+                    type="submit" value="Búsqueda" />
+                <input
+                    class="clearBtn px-6 max-[375px]:px-5 h-[44px] text-[#DC3535] bg-white border-solid border-2 border-[#DC3535] rounded hover:bg-violet-300 transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-[#DC3535]"
+                    type="submit" value="Limpiar" />
+            </div>
+        </form>
+    </section>
+    <section class="spinner flex justify-center mt-6">
+        <img class="w-1/5 hidden" src="assets/fruits.gif" alt="">
+    </section>
+    <section class="cardsJobs w-full px-32 mt-6">
+        <div class="cardJob w-1/4 p-2 rounded border-2 border-stone-400">
+            <h1 class="text-xl">Nutricionista Alim. Vegana</h1>
+            <img src="assets/vegana.jpg" class="mt-2" alt="alimentos veganos">
+            <p class="mt-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus necessitatibus earum libero optio
+                laborum iusto aliquid nulla dolorem harum eligendi.</p>
+            <div class="flex mt-2 justify-between">
+                <span class="bg-[#FFE15D] text-black px-2 py-1 rounded">Locación</span>
+                <span class="bg-[#FFE15D] text-black px-2 py-1 rounded">Especialidad</span>
+                <span class="bg-[#FFE15D] text-black px-2 py-1 rounded">Experiencia</span>
+            </div>
+            <button
+                class="detailsBtn mt-2 px-4 py-2 text-white bg-[#F49D1A] mr-2 rounded  hover:bg-[#FF7000] transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300">Ver
+                detalles</button>
+        </div>
+    </section>
     <script src="js/script.js"></script>
 </body>
+
 </html>
