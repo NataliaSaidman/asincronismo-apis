@@ -33,11 +33,11 @@
             </div>
             <ul class="lg:flex hidden justify-end items-center">
                 <li>
-                    <a href="#" name="balance" class="text-xl text-white">
+                    <a href="#" name="balance" class="text-xl text-white hover:text-[#F49D1A]">
                         Página principal </a>
                 </li>
                 <li class="ml-5 mr-5">
-                    <a href="#" name="balance" class="text-xl text-white">
+                    <a href="#" name="balance" class="text-xl text-white hover:text-[#F49D1A]">
                         Agregar trabajo</a>
                 </li>
             </ul>
@@ -69,11 +69,40 @@
     </header>
     <section class="h-60 bg-[url('./assets/9-ccu.jpg')] bg-center">
     </section>
+    <div id="newJob" class="hidden sectionNewJob lg:p-16 py-16 px-4 flex justify-center">
+        <section
+            class="lg:max-w-2xl p-5 max-w-none w-full rounded border-2 border-t-8 border-[#F49D1A] shadow-lg shadow-gray-400">
+            <h2 class="lg:text-4xl text-3xl font-bold">Nuevo trabajo</h2>
+            <form action="" class="formNewJob flex flex-col mt-8">
+                <label for="jobTitle" class="mb-1 font-bold">Título del trabajo</label>
+                <input type="text" name="jobTitle" id="jobTitle" placeholder="Título del trabajo"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <label for="jobImg" class="mb-1 font-bold">Imagen del trabajo</label>
+                <input type="text" name="jobImg" id="jobImg" placeholder="url de la imagen"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <label for="description" class="mb-1 font-bold">Descripción</label>
+                <textarea id="description" cols="50" rows="10" placeholder="Escriba la descripción del trabajo"
+                    class="mb-2 p-2 rounded border-2 border-stone-400"></textarea>
+                <label for="tags" class="mb-1 font-bold">Etiquetas</label>
+                <input type="text" name="location" id="location" placeholder="Locación"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input type="text" name="specialty" id="specialty" placeholder="Especialidad"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input type="text" name="experience" id="experience" placeholder="Experiencia"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input
+                    class="addNewJobBtn w-1/5 px-6 max-[375px]:px-5 h-[44px] text-white bg-[#F49D1A] rounded hover:bg-[#FF7000] transition duration-100 cursor-pointer"
+                    type="submit" value="Agregar" />
+            </form>
+        </section>
+    </div>
     <section class="flex justify-center items-center">
         <div class="flex justify-center items-center flex-col w-3/4">
-            <span class="text-center md:text-3xl text-xl mt-8 text-[#DC3535]">Es difícil tener salud individual si no hay salud
+            <span class="text-center md:text-3xl text-xl mt-8 text-[#DC3535]">Es difícil tener salud individual si no
+                hay salud
                 colectiva.</span>
-            <span class="text-center md:text-3xl text-xl mt-2 text-[#DC3535]">Se necesita sobreanía alimentaria para proteger a la
+            <span class="text-center md:text-3xl text-xl mt-2 text-[#DC3535]">Se necesita sobreanía alimentaria para
+                proteger a la
                 población</span>
             <cite class="mt-2 text-[#DC3535]">Jesica Lavia</cite>
         </div>
@@ -101,7 +130,7 @@
                 </select>
                 <select name="" id="experience" class="p-2 rounded border-2 border-stone-400 ml-2 md:mt-0 mt-2">
                     <option value="experiencia">Experiencia</option>
-                    <option value="recibida">Recibida con matrícula habilitante</option>
+                    <option value="recibida">Recibida con matrícula</option>
                     <option value="unoATres">1 a 3 años</option>
                     <option value="cuatroASeis">4 a 6 años</option>
                 </select>
@@ -111,13 +140,29 @@
                     class="searchBtn px-6 max-[375px]:px-5 h-[44px] text-white bg-[#DC3535] mr-2 rounded  transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
                     type="submit" value="Búsqueda" />
                 <input
-                    class="clearBtn px-6 max-[375px]:px-5 h-[44px] text-[#DC3535] bg-white border-solid border-2 border-[#DC3535] rounded hover:bg-violet-300 transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
+                    class="clearBtn px-6 max-[375px]:px-5 h-[44px] text-[#DC3535] bg-white border-solid border-2 border-[#DC3535] rounded hover:bg-violet-300 transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-[#DC3535]"
                     type="submit" value="Limpiar" />
             </div>
         </form>
     </section>
     <section class="spinner flex justify-center mt-6">
         <img class="w-1/5 hidden" src="assets/fruits.gif" alt="">
+    </section>
+    <section class="cardsJobs w-full px-32 mt-6">
+        <div class="cardJob w-1/4 p-2 rounded border-2 border-stone-400">
+            <h1 class="text-xl">Nutricionista Alim. Vegana</h1>
+            <img src="assets/vegana.jpg" class="mt-2" alt="alimentos veganos">
+            <p class="mt-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus necessitatibus earum libero optio
+                laborum iusto aliquid nulla dolorem harum eligendi.</p>
+            <div class="flex mt-2 justify-between">
+                <span class="bg-[#FFE15D] text-black px-2 py-1 rounded">Locación</span>
+                <span class="bg-[#FFE15D] text-black px-2 py-1 rounded">Especialidad</span>
+                <span class="bg-[#FFE15D] text-black px-2 py-1 rounded">Experiencia</span>
+            </div>
+            <button
+                class="detailsBtn mt-2 px-4 py-2 text-white bg-[#F49D1A] mr-2 rounded  hover:bg-[#FF7000] transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300">Ver
+                detalles</button>
+        </div>
     </section>
     <script src="js/script.js"></script>
 </body>
