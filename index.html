@@ -38,7 +38,7 @@
                         Página principal </a>
                 </li>
                 <li class="ml-5 mr-5">
-                    <a href="#" name="balance" class="text-xl text-white hover:text-[#F49D1A]">
+                    <a href="#" name="balance" class="addJob text-xl text-white hover:text-[#F49D1A]">
                         Agregar trabajo</a>
                 </li>
             </ul>
@@ -70,36 +70,9 @@
         </div>
     </header>
     <!-- imagen mujeres -->
+    <div class="mainContainer">
     <section class="h-60 bg-[url('./assets/9-ccu.jpg')] bg-center">
     </section>
-    <!-- Formulario nuevo trabajo-->
-    <div id="newJob" class="hidden sectionNewJob lg:p-16 py-16 px-4 flex justify-center">
-        <section
-            class="lg:max-w-2xl p-5 max-w-none w-full rounded border-2 border-t-8 border-[#F49D1A] shadow-lg shadow-gray-400">
-            <h2 class="lg:text-4xl text-3xl font-bold">Nuevo trabajo</h2>
-            <form action="" class="formNewJob flex flex-col mt-8">
-                <label for="jobTitle" class="mb-1 font-bold">Título del trabajo</label>
-                <input type="text" name="jobTitle" id="jobTitle" placeholder="Título del trabajo"
-                    class="mb-2 p-2 rounded border-2 border-stone-400">
-                <label for="jobImg" class="mb-1 font-bold">Imagen del trabajo</label>
-                <input type="text" name="jobImg" id="jobImg" placeholder="url de la imagen"
-                    class="mb-2 p-2 rounded border-2 border-stone-400">
-                <label for="description" class="mb-1 font-bold">Descripción</label>
-                <textarea id="description" cols="50" rows="10" placeholder="Escriba la descripción del trabajo"
-                    class="mb-2 p-2 rounded border-2 border-stone-400"></textarea>
-                <label for="tags" class="mb-1 font-bold">Etiquetas</label>
-                <input type="text" name="location" id="location" placeholder="Locación"
-                    class="mb-2 p-2 rounded border-2 border-stone-400">
-                <input type="text" name="specialty" id="specialty" placeholder="Especialidad"
-                    class="mb-2 p-2 rounded border-2 border-stone-400">
-                <input type="text" name="experience" id="experience" placeholder="Experiencia"
-                    class="mb-2 p-2 rounded border-2 border-stone-400">
-                <input
-                    class="addNewJobBtn w-1/5 px-6 max-[375px]:px-5 h-[44px] text-white bg-[#F49D1A] rounded hover:bg-[#FF7000] transition duration-100 cursor-pointer"
-                    type="submit" value="Agregar" />
-            </form>
-        </section>
-    </div>
     <!-- Frase -->
     <section class="flex justify-center items-center">
         <div class="flex justify-center items-center flex-col w-3/4">
@@ -153,14 +126,46 @@
     </section>
     <!-- Spinner -->
     <section class="spinner flex justify-center mt-6">
-        <img class="w-1/5 hidden" src="assets/fruits.gif" alt="">
+        <img class="w-1/5" src="assets/fruits.gif" alt="">
     </section>
     <!-- Tarjetas de trabajo -->
     <section class="flex w-full mt-6 px-8">
         <div class="cardsJobs flex flex-wrap justify-center w-full">
-    
+
         </div>
     </section>
+    </div>
+    <!-- Formulario nuevo trabajo-->
+    <div id="newJob" class="hidden sectionNewJob lg:p-16 py-16 px-4 flex justify-center">
+        <section
+            class="lg:max-w-2xl p-5 max-w-none w-full rounded border-2 border-t-8 border-[#B01E68] shadow-lg shadow-gray-400">
+            <h2 class="lg:text-4xl text-3xl font-bold">Nuevo trabajo</h2>
+            <form action="" class="formNewJob flex flex-col mt-8">
+                <label for="jobTitle" class="mb-1 font-bold">Título del trabajo</label>
+                <input type="text" name="jobTitle" id="jobTitle" placeholder="Título del trabajo"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <label for="jobImg" class="mb-1 font-bold">Imagen del trabajo</label>
+                <input type="text" name="jobImg" id="jobImg" placeholder="url de la imagen"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <label for="review" class="mb-1 font-bold">Reseña</label>
+                <input type="text" name="review" id="review" placeholder="breve reseña del trabajo"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <label for="description" class="mb-1 font-bold">Descripción</label>
+                <textarea id="description" cols="20" rows="5" placeholder="Escriba la descripción del trabajo"
+                    class="mb-2 p-2 rounded border-2 border-stone-400"></textarea>
+                <label for="" class="mb-1 font-bold">Etiquetas</label>
+                <input type="text" name="location" id="location" placeholder="Locación"
+                class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input type="text" name="speciality" id="speciality" placeholder="Especialidad"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input type="text" name="experience" id="experience" placeholder="Experiencia"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input
+                    class="addNewJobBtn w-1/5 px-6 max-[375px]:px-5 h-[44px] text-white bg-[#F49D1A] rounded hover:bg-[#FF7000] transition duration-100 cursor-pointer"
+                    type="submit" value="Agregar" />
+            </form>
+        </section>
+    </div>
     <script src="js/script.js"></script>
 </body>
 
