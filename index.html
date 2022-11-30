@@ -13,6 +13,7 @@
 </head>
 
 <body class="font-['Noto_Sans']">
+    <!-- Barra de navegación -->
     <header>
         <nav class="lg:px-32 sm:px-6 lg:h-24 h-20 bg-[#B01E68] flex justify-between items-center font-['Noto_Sans']">
             <div class="flex flex-start">
@@ -42,6 +43,7 @@
                 </li>
             </ul>
         </nav>
+        <!-- Barra de navegación responsive-->
         <div class="lg:hidden navbarMenu hidden">
             <ul class="flex flex-col bg-gray-200">
                 <li class="px-4 py-2 group text-lg hover:text-[#D3375C] transition duration-300">
@@ -67,8 +69,10 @@
             </ul>
         </div>
     </header>
+    <!-- imagen mujeres -->
     <section class="h-60 bg-[url('./assets/9-ccu.jpg')] bg-center">
     </section>
+    <!-- Formulario nuevo trabajo-->
     <div id="newJob" class="hidden sectionNewJob lg:p-16 py-16 px-4 flex justify-center">
         <section
             class="lg:max-w-2xl p-5 max-w-none w-full rounded border-2 border-t-8 border-[#F49D1A] shadow-lg shadow-gray-400">
@@ -96,6 +100,7 @@
             </form>
         </section>
     </div>
+    <!-- Frase -->
     <section class="flex justify-center items-center">
         <div class="flex justify-center items-center flex-col w-3/4">
             <span class="text-center md:text-3xl text-xl mt-8 text-[#DC3535]">Es difícil tener salud individual si no
@@ -107,6 +112,7 @@
             <cite class="mt-2 text-[#DC3535]">Jesica Lavia</cite>
         </div>
     </section>
+    <!-- Filtros de búsqueda -->
     <section class="search mt-6">
         <form action="" class="flex flex-col">
             <div class="flex justify-center md:flex-row flex-col md:w-full md:px-0 px-4">
@@ -145,23 +151,14 @@
             </div>
         </form>
     </section>
+    <!-- Spinner -->
     <section class="spinner flex justify-center mt-6">
         <img class="w-1/5 hidden" src="assets/fruits.gif" alt="">
     </section>
-    <section class="cardsJobs w-full px-32 mt-6">
-        <div class="cardJob w-1/4 p-2 rounded border-2 border-stone-400">
-            <h1 class="text-xl">Nutricionista Alim. Vegana</h1>
-            <img src="assets/vegana.jpg" class="mt-2" alt="alimentos veganos">
-            <p class="mt-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus necessitatibus earum libero optio
-                laborum iusto aliquid nulla dolorem harum eligendi.</p>
-            <div class="flex mt-2 justify-between">
-                <span class="bg-[#FFE15D] text-black px-2 py-1 rounded">Locación</span>
-                <span class="bg-[#FFE15D] text-black px-2 py-1 rounded">Especialidad</span>
-                <span class="bg-[#FFE15D] text-black px-2 py-1 rounded">Experiencia</span>
-            </div>
-            <button
-                class="detailsBtn mt-2 px-4 py-2 text-white bg-[#F49D1A] mr-2 rounded  hover:bg-[#FF7000] transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300">Ver
-                detalles</button>
+    <!-- Tarjetas de trabajo -->
+    <section class="flex w-full mt-6 px-8">
+        <div class="cardsJobs flex flex-wrap justify-center w-full">
+    
         </div>
     </section>
     <script src="js/script.js"></script>
