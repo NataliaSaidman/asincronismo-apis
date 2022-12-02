@@ -6,19 +6,25 @@ const $$ = (selector) => document.querySelectorAll(selector)
 const hideElement = (selector) => selector.classList.add("hidden")
 const showElement = (selector) => selector.classList.remove("hidden")
 
+const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs/"
+
 //Functions GET, POST, PUT, DELETE
 
 const getJobs = async (jobId = "") => {
-    const response = await fetch(`https://637e11219c2635df8f97fc19.mockapi.io/jobs/${jobId}`)
+    const response = await fetch(`${base_url}${jobId}`)
     const jobs = await response.json()
     return jobs
 }
 
-getJobs().then(data => generateCards(data))
+const generateAllJobs = () =>{
+    getJobs().then(data => generateCards(data))
+}
+    
+generateAllJobs()
 
 
 const addJob = () => {
-    fetch("https://637e11219c2635df8f97fc19.mockapi.io/jobs", {
+    fetch(`${base_url}`, {
         method: "POST",
         headers: {
             'Content-Type': 'Application/json'
@@ -28,7 +34,7 @@ const addJob = () => {
 }
 
 const editJob = (jobId) => {
-    fetch(`https://637e11219c2635df8f97fc19.mockapi.io/jobs/${jobId}`, {
+    fetch(`${base_url}${jobId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'Application/json'
@@ -38,7 +44,7 @@ const editJob = (jobId) => {
 }
 
 const deleteJob = (jobId) => {
-    fetch(`https://637e11219c2635df8f97fc19.mockapi.io/jobs/${jobId}`, {
+    fetch(`${base_url}${jobId}`, {
         method: "DELETE"
     }).finally(() => window.location.href = "index.html")
 }
@@ -78,8 +84,24 @@ const dataEditJob = (job) => {
     $("#editReview").value = job.review
 }
 
+//Filters
+
+const filterSpeciality = () => {
+    return `?speciality=${$("#speciality").value}`
+}
+
+$(".searchBtn").addEventListener("click", (e) =>{
+    e.preventDefault(e)
+    if($("#speciality").value === "especialidad"){
+        generateAllJobs()
+    } 
+    else getJobs(filterSpeciality()).then(data => generateCards(data))
+})
+
 //DOM
 const generateCards = (jobs) => {
+    $(".cardsJobs").innerHTML = ""
+    showElement($(".spinner"))
         setTimeout(() => {
             hideElement($(".spinner"))
             for (const { name, image, review, location, experience, speciality, id } of jobs) {
@@ -159,12 +181,8 @@ const generateOneCard = (job) => {
     }, 2000)
 }
 
-//Filters
-const filterJobsByProp = (array, prop, input) => {
-    return array.filter(operation => operation[prop] === input)
-}
 
-getJobs().then(data => console.log(data))
+
 
 
 // Events
@@ -196,9 +214,4 @@ $(".alertCancelBtn").addEventListener("click", () => {
     window.location.href = "index.html"
 })
 
-// getJobs().then(data => generateCards(filtros(data))
 
-// const filtros = (data) => {
-//     const filter = data
-//     search(filter)
-// }
