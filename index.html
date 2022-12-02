@@ -34,11 +34,11 @@
             </div>
             <ul class="lg:flex hidden justify-end items-center">
                 <li>
-                    <a href="#" name="balance" class="text-xl text-white hover:text-[#F49D1A]">
+                    <a href="" name="home" class="text-xl text-white hover:text-[#F49D1A]">
                         Página principal </a>
                 </li>
                 <li class="ml-5 mr-5">
-                    <a href="#" name="balance" class="addJob text-xl text-white hover:text-[#F49D1A]">
+                    <a href="#" name="addJob" class="addJob text-xl text-white hover:text-[#F49D1A]">
                         Agregar trabajo</a>
                 </li>
             </ul>
@@ -70,70 +70,71 @@
         </div>
     </header>
     <!-- imagen mujeres -->
-    <div class="mainContainer">
-    <section class="h-60 bg-[url('./assets/9-ccu.jpg')] bg-center">
-    </section>
-    <!-- Frase -->
-    <section class="flex justify-center items-center">
-        <div class="flex justify-center items-center flex-col w-3/4">
-            <span class="text-center md:text-3xl text-xl mt-8 text-[#DC3535]">Es difícil tener salud individual si no
-                hay salud
-                colectiva.</span>
-            <span class="text-center md:text-3xl text-xl mt-2 text-[#DC3535]">Se necesita sobreanía alimentaria para
-                proteger a la
-                población</span>
-            <cite class="mt-2 text-[#DC3535]">Jesica Lavia</cite>
-        </div>
-    </section>
-    <!-- Filtros de búsqueda -->
-    <section class="search mt-6">
-        <form action="" class="flex flex-col">
-            <div class="flex justify-center md:flex-row flex-col md:w-full md:px-0 px-4">
-                <select name="" id="location" class="p-2 rounded border-2 border-stone-400 ml-2">
-                    <option value="locacion">Locación</option>
-                    <option value="caba">Ciudad Autónoma de Buenos Aires</option>
-                    <option value="gcba">Gran Buenos Aires</option>
-                    <option value="cordoba">Córdoba</option>
-                    <option value="mendoza">Mendoza</option>
-                    <option value="santaFe">Santa Fe</option>
-                    <option value="entreRios">Entre Ríos</option>
-                </select>
-                <select name="" id="specialty" class="p-2 rounded border-2 border-stone-400 ml-2 md:mt-0 mt-2">
-                    <option value="epecialidad">Especialidad</option>
-                    <option value="saludable">Alimentación saludable</option>
-                    <option value="vegana">Alimentación vegana</option>
-                    <option value="vegetariana">Alimentación vegetariana</option>
-                    <option value="infancia">Alimentación primera infancia</option>
-                    <option value="embarazoLactancia">Embarazo y lactancia</option>
-                    <option value="sinTACC">Alimentación sin TACC</option>
-                </select>
-                <select name="" id="experience" class="p-2 rounded border-2 border-stone-400 ml-2 md:mt-0 mt-2">
-                    <option value="experiencia">Experiencia</option>
-                    <option value="recibida">Recibida con matrícula</option>
-                    <option value="unoATres">1 a 3 años</option>
-                    <option value="cuatroASeis">4 a 6 años</option>
-                </select>
+    <div class="mainContainer h-full">
+        <section class="h-60 bg-[url('./assets/9-ccu.jpg')] bg-center">
+        </section>
+        <!-- Frase -->
+        <section class="phrase flex justify-center items-center">
+            <div class="flex justify-center items-center flex-col w-3/4">
+                <span class="text-center md:text-3xl text-xl mt-8 text-[#DC3535]">Es difícil tener salud individual si
+                    no
+                    hay salud
+                    colectiva.</span>
+                <span class="text-center md:text-3xl text-xl mt-2 text-[#DC3535]">Se necesita sobreanía alimentaria para
+                    proteger a la
+                    población</span>
+                <cite class="mt-2 text-[#DC3535]">Jesica Lavia</cite>
             </div>
-            <div class="flex justify-center mt-4">
-                <input
-                    class="searchBtn px-6 max-[375px]:px-5 h-[44px] text-white bg-[#DC3535] mr-2 rounded  transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
-                    type="submit" value="Búsqueda" />
-                <input
-                    class="clearBtn px-6 max-[375px]:px-5 h-[44px] text-[#DC3535] bg-white border-solid border-2 border-[#DC3535] rounded hover:bg-violet-300 transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-[#DC3535]"
-                    type="submit" value="Limpiar" />
-            </div>
-        </form>
-    </section>
-    <!-- Spinner -->
-    <section class="spinner flex justify-center mt-6">
-        <img class="w-1/5" src="assets/fruits.gif" alt="">
-    </section>
-    <!-- Tarjetas de trabajo -->
-    <section class="flex w-full mt-6 px-8">
-        <div class="cardsJobs flex flex-wrap justify-center w-full">
+        </section>
+        <!-- Filtros de búsqueda -->
+        <section class="search mt-6">
+            <form action="" class="flex flex-col">
+                <div class="flex justify-center md:flex-row flex-col md:w-full md:px-0 px-4">
+                    <select name="" id="location" class="p-2 rounded border-2 border-stone-400 ml-2">
+                        <option value="locacion">Locación</option>
+                        <option value="caba">Ciudad Autónoma de Buenos Aires</option>
+                        <option value="gcba">Gran Buenos Aires</option>
+                        <option value="cordoba">Córdoba</option>
+                        <option value="mendoza">Mendoza</option>
+                        <option value="santaFe">Santa Fe</option>
+                        <option value="entreRios">Entre Ríos</option>
+                    </select>
+                    <select name="" id="speciality" class="p-2 rounded border-2 border-stone-400 ml-2 md:mt-0 mt-2">
+                        <option value="epecialidad">Especialidad</option>
+                        <option value="saludable">Alimentación saludable</option>
+                        <option value="vegana">Alimentación vegana</option>
+                        <option value="vegetariana">Alimentación vegetariana</option>
+                        <option value="infancia">Alimentación primera infancia</option>
+                        <option value="embarazoLactancia">Embarazo y lactancia</option>
+                        <option value="sinTACC">Alimentación sin TACC</option>
+                    </select>
+                    <select name="" id="experience" class="p-2 rounded border-2 border-stone-400 ml-2 md:mt-0 mt-2">
+                        <option value="experiencia">Experiencia</option>
+                        <option value="recibida">Recibida con matrícula</option>
+                        <option value="unoATres">1 a 3 años</option>
+                        <option value="cuatroASeis">4 a 6 años</option>
+                    </select>
+                </div>
+                <div class="flex justify-center mt-4">
+                    <input
+                        class="searchBtn px-6 max-[375px]:px-5 h-[44px] text-white bg-[#DC3535] mr-2 rounded  transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
+                        type="submit" value="Búsqueda" />
+                    <input
+                        class="clearBtn px-6 max-[375px]:px-5 h-[44px] text-[#DC3535] bg-white border-solid border-2 border-[#DC3535] rounded hover:bg-violet-300 transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-[#DC3535]"
+                        type="submit" value="Limpiar" />
+                </div>
+            </form>
+        </section>
+        <!-- Spinner -->
+        <section class="spinner flex justify-center mt-6">
+            <img class="w-1/5" src="assets/fruits.gif" alt="">
+        </section>
+        <!-- Tarjetas de trabajo -->
+        <section class="flex w-full mt-6 px-8">
+            <div class="cardsJobs flex flex-wrap justify-center">
 
-        </div>
-    </section>
+            </div>
+        </section>
     </div>
     <!-- Formulario nuevo trabajo-->
     <div id="newJob" class="hidden sectionNewJob lg:p-16 py-16 px-4 flex justify-center">
@@ -154,11 +155,11 @@
                 <textarea id="description" cols="20" rows="5" placeholder="Escriba la descripción del trabajo"
                     class="mb-2 p-2 rounded border-2 border-stone-400"></textarea>
                 <label for="" class="mb-1 font-bold">Etiquetas</label>
-                <input type="text" name="location" id="location" placeholder="Locación"
-                class="mb-2 p-2 rounded border-2 border-stone-400">
-                <input type="text" name="speciality" id="speciality" placeholder="Especialidad"
+                <input type="text" name="locationForm" id="locationForm" placeholder="Locación"
                     class="mb-2 p-2 rounded border-2 border-stone-400">
-                <input type="text" name="experience" id="experience" placeholder="Experiencia"
+                <input type="text" name="specialityForm" id="specialityForm" placeholder="Especialidad"
+                    class="mb-2 p-2 rounded border-2 border-stone-400">
+                <input type="text" name="experienceForm" id="experienceForm" placeholder="Experiencia"
                     class="mb-2 p-2 rounded border-2 border-stone-400">
                 <input
                     class="addNewJobBtn w-1/5 px-6 max-[375px]:px-5 h-[44px] text-white bg-[#F49D1A] rounded hover:bg-[#FF7000] transition duration-100 cursor-pointer"
@@ -166,6 +167,85 @@
             </form>
         </section>
     </div>
+    <!-- Sección editar trabajo-->
+    <div class="containerEditJob flex w-full flex-col xl:px-14 px-4 xl:justify-start justify-center">
+        <div class="oneJob xl:w-1/2 w-full xl:ml-11 ml-0 flex xl:justify-start justify-center">
+
+        </div>
+        <div id="editJobForm" class="hidden sectionEditJob w-full flex xl:justify-start justify-center ml-11">
+            <section class="lg:max-w-2xl p-5 max-w-none w-full">
+                <form action="" class="formEditJob flex flex-col w-full">
+                    <label for="jobEditTitle" class="mb-1 font-bold">Título del trabajo</label>
+                    <input type="text" name="jobEditTitle" id="jobEditTitle" placeholder="Título del trabajo"
+                        class="mb-2 p-2 rounded border-2 border-stone-400">
+                    <label for="jobEditImg" class="mb-1 font-bold">Imagen del trabajo</label>
+                    <input type="text" name="jobEditImg" id="jobEditImg" placeholder="url de la imagen"
+                        class="mb-2 p-2 rounded border-2 border-stone-400">
+                    <label for="editReview" class="mb-1 font-bold">Reseña</label>
+                    <input type="text" name="editReview" id="editReview" placeholder="breve reseña del trabajo"
+                        class="mb-2 p-2 rounded border-2 border-stone-400">
+                    <label for="editDescription" class="mb-1 font-bold">Descripción</label>
+                    <textarea id="editDescription" cols="20" rows="5" placeholder="Escriba la descripción del trabajo"
+                        class="mb-2 p-2 rounded border-2 border-stone-400"></textarea>
+                    <label for="" class="mb-1 font-bold">Etiquetas</label>
+                    <input type="text" name="editLocationForm" id="editLocationForm" placeholder="Locación"
+                        class="mb-2 p-2 rounded border-2 border-stone-400">
+                    <input type="text" name="editSpecialityForm" id="editSpecialityForm" placeholder="Especialidad"
+                        class="mb-2 p-2 rounded border-2 border-stone-400">
+                    <input type="text" name="editExperienceForm" id="editExperienceForm" placeholder="Experiencia"
+                        class="mb-2 p-2 rounded border-2 border-stone-400">
+                    <input
+                        class="editJobSubmitBtn w-1/5 px-6 max-[375px]:px-5 h-[44px] text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
+                        type="submit" value="Editar" />
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <!-- Alert-->
+    <div id="alert" class="hidden w-full flex justify-center mt-4">
+        <div class="flex w-4/5 alert-content flex p-2 rounded border-2 border-stone-400 ml-2 mt-2 bg-[#FFE15D]">
+            <p class="alertText text-xl mt-2 text-[#C55300] font-semibold">¿Estás seguro qué deseas eliminar este
+                trabajo?</p>
+            <button
+                class="alertDeleteBtn px-4 py-2 text-white bg-[#FF7000] ml-4 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300">Eliminar</button>
+            <button
+                class="alertCancelBtn px-4 py-2 text-white bg-gray-600 ml-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300">Cancelar</button>
+        </div>
+    </div>
+    |
+
+    <footer class=" w-full flex h-20 mt-6 bg-[#B01E68] justify-center items-center">
+        <div class="flex flex-col">
+            <ul class="flex justify-around text-white text-xl">
+                <li>
+                    <div class="link-red hover:text-[#F49D1A]">
+                        <a href="https://twitter.com/saidman_natalia" target="_blank" aria-label="Twitter"><i
+                                class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="link-red hover:text-[#F49D1A]">
+                        <a href="https://github.com/NataliaSaidman" target="_blank" aria-label="Github"><i
+                                class="fa-brands fa-github-alt"></i></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="link-red hover:text-[#F49D1A]">
+                        <a href="https://www.linkedin.com/in/natalia-saidman-29879a242/" target="_blank"
+                            aria-label="Linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="link-red hover:text-[#F49D1A]">
+                        <a href="mailto:licnataliasaidman@gmail.com" target="_blank" aria-label="Email"><i
+                                class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </li>
+            </ul>
+            <p class="mt-2 text-white">Hecho con &#128154; por Natalia Saidman</p>
+        </div>
+    </footer>
     <script src="js/script.js"></script>
 </body>
 
