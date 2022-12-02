@@ -14,13 +14,8 @@ const getJobs = async (jobId = "") => {
     return jobs
 }
 
-getJobs(jobId = "").then(data => {
-    if(jobId === ""){
-        generateCards(data)
-    } else {
-        generateOneCard(data)
-    }
-    })
+getJobs().then(data => generateCards(data))
+
 
 const addJob = () => {
     fetch("https://637e11219c2635df8f97fc19.mockapi.io/jobs", {
@@ -47,16 +42,26 @@ const saveJob = () => {
         name: $("#jobTitle").value,
         image: $("#jobImg").value,
         description: $("#description").value,
-        location: $("#location").value,
-        speciality: $("#speciality").value,
-        experience: $("#experience").value,
+        location: $("#locationForm").value,
+        speciality: $("#specialityForm").value,
+        experience: $("#experienceForm").value,
         review: $("#review").value
     }
 }
 
+const saveEditJob = (job) => {
+    showElement($("#editJob"))
+    $("#jobEditTitle").value = job.name
+    $("#jobEditImg").value = job.image
+    $("#editDescription").value = job.description
+    $("#editLocationForm").value = job.location
+    $("#editSpecialityForm").value = job.speciality
+    $("#editExperienceForm").value = job.experience
+    $("#editReview").value = job.review
+}
+
 //DOM
 const generateCards = (jobs) => {
-    if (jobs) {
         setTimeout(() => {
             hideElement($(".spinner"))
             for (const { name, image, review, location, experience, speciality, id } of jobs) {
@@ -78,25 +83,27 @@ const generateCards = (jobs) => {
                 </div>
                 `
             }
+            for (const btn of $$(".detailsBtn")) {
+                btn.addEventListener("click", () => {
+                    // hideElement($(".mainContainer"))
+                    const jobId = btn.getAttribute("data-id")
+                    // $("#submit-edit").setAttribute("data-id", jobId)
+                    getJobs(jobId).then(data => generateOneCard(data))
+                })
+            }
+
         }, 2000)
-    }
-    for (const btn of $$(".detailsBtn")) {
-        btn.addEventListener("click", () => {
-            hideElement($(".mainContainer"))
-            const jobId = btn.getAttribute("data-id")
-            // $("#submit-edit").setAttribute("data-id", jobId)
-            getJobs(jobId)
-        })
-    }
+        
 }
 
 const generateOneCard = (job) => {
-    if (job) {
-        setTimeout(() => {
-            hideElement($(".spinner"))
-            const { name, image, review, location, experience, speciality, id, description } = job
-                $(".cardsJobs").innerHTML = `
-                <div class="cardJob lg:w-1/4 md:w-2/4 w-4/4 p-2 rounded border-2 border-stone-400 ml-2 mt-2">
+    $(".cardsJobs").innerHTML = ""
+    showElement($(".spinner"))
+    setTimeout(() => {
+        hideElement($(".spinner"))
+        const { name, image, review, location, experience, speciality, id, description } = job
+        $(".oneJob").innerHTML = `
+                <div class="cardJob w-3/5 p-2 rounded border-2 border-stone-400 ml-2 mt-2">
                     <h1 class="text-xl">${name}</h1>
                     <img src="${image}" class="mt-2 w-full" alt="alimentos veganos">
                     <p class="mt-2 w-full">${review}</p>
@@ -113,10 +120,24 @@ const generateOneCard = (job) => {
                     <button
                     class="deleteBtn mt-2 px-4 py-2 text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Eliminar</button>
                 </div>
-                `
-            
-        }, 2000)
-} }
+            `
+            for (const btn of $$(".editBtn")) {
+                btn.addEventListener("click", () => {
+                    // hideElement($(".mainContainer"))
+                    showElement($("#editJob"))
+                    const jobId = btn.getAttribute("data-id")
+                    // $("#submit-edit").setAttribute("data-id", jobId)
+                    getJobs(jobId).then(data => saveEditJob(data))
+                })
+            }
+        
+    }, 2000)
+}
+
+//Filters
+
+
+
 // Events
 
 $(".addJob").addEventListener("click", () => {
@@ -128,3 +149,10 @@ $(".formNewJob").addEventListener("submit", (e) => {
     e.preventDefault()
     addJob()
 })
+
+// getJobs().then(data => generateCards(filtros(data))
+
+// const filtros = (data) => {
+//     const filter = data
+//     search(filter)
+// }
