@@ -37,6 +37,12 @@ const editJob = (jobId) => {
     }).finally(() => window.location.href = "index.html")
 }
 
+const deleteJob = (jobId) => {
+    fetch(`https://637e11219c2635df8f97fc19.mockapi.io/jobs/${jobId}`, {
+        method: "DELETE"
+    }).finally(() => window.location.href = "index.html")
+}
+
 const saveJob = () => {
     return {
         name: $("#jobTitle").value,
@@ -49,8 +55,20 @@ const saveJob = () => {
     }
 }
 
-const saveEditJob = (job) => {
-    showElement($("#editJob"))
+const saveEditJob = () => {
+    return {
+        name: $("#jobEditTitle").value,
+        image: $("#jobEditImg").value,
+        description: $("#editDescription").value,
+        location: $("#editLocationForm").value,
+        speciality: $("#editSpecialityForm").value,
+        experience: $("#editExperienceForm").value,
+        review: $("#editReview").value
+    }
+}
+
+const dataEditJob = (job) => {
+    showElement($("#editJobForm"))
     $("#jobEditTitle").value = job.name
     $("#jobEditImg").value = job.image
     $("#editDescription").value = job.description
@@ -66,11 +84,11 @@ const generateCards = (jobs) => {
             hideElement($(".spinner"))
             for (const { name, image, review, location, experience, speciality, id } of jobs) {
                 $(".cardsJobs").innerHTML += `
-                <div class="cardJob lg:w-1/4 md:w-2/4 w-4/4 p-2 rounded border-2 border-stone-400 ml-2 mt-2">
+                <div class="cardJob xl:w-1/5 lg:w-1/4 md:w-2/4 w-4/4 p-2 rounded border-2 border-stone-400 ml-2 mt-2">
                     <h1 class="text-xl">${name}</h1>
                     <img src="${image}" class="mt-2 w-full" alt="alimentos veganos">
                     <p class="mt-2 w-full">${review}</p>
-                    <div class="flex mt-2 justify-between w-full max-[300px]:flex-col">
+                    <div class="flex mt-2 justify-start w-full max-[300px]:flex-col">
                         <span class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
                         <span
                         class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
@@ -85,9 +103,7 @@ const generateCards = (jobs) => {
             }
             for (const btn of $$(".detailsBtn")) {
                 btn.addEventListener("click", () => {
-                    // hideElement($(".mainContainer"))
                     const jobId = btn.getAttribute("data-id")
-                    // $("#submit-edit").setAttribute("data-id", jobId)
                     getJobs(jobId).then(data => generateOneCard(data))
                 })
             }
@@ -103,12 +119,12 @@ const generateOneCard = (job) => {
         hideElement($(".spinner"))
         const { name, image, review, location, experience, speciality, id, description } = job
         $(".oneJob").innerHTML = `
-                <div class="cardJob w-3/5 p-2 rounded border-2 border-stone-400 ml-2 mt-2">
+                <div class="cardJob xl:w-3/5 md:w-2/4 w-full p-2 rounded border-2 border-stone-400 ml-2 mt-2 h-max">
                     <h1 class="text-xl">${name}</h1>
                     <img src="${image}" class="mt-2 w-full" alt="alimentos veganos">
                     <p class="mt-2 w-full">${review}</p>
                     <p class="mt-2 w-full">${description}</p>
-                    <div class="flex mt-2 justify-between w-full max-[300px]:flex-col">
+                    <div class="flex mt-2 justify-strat w-full max-[300px]:flex-col">
                         <span class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
                         <span
                         class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
@@ -123,11 +139,20 @@ const generateOneCard = (job) => {
             `
             for (const btn of $$(".editBtn")) {
                 btn.addEventListener("click", () => {
-                    // hideElement($(".mainContainer"))
-                    showElement($("#editJob"))
+                    showElement($("#editJobForm"))
                     const jobId = btn.getAttribute("data-id")
-                    // $("#submit-edit").setAttribute("data-id", jobId)
-                    getJobs(jobId).then(data => saveEditJob(data))
+                    $(".editJobSubmitBtn").setAttribute("data-id", jobId)
+                    getJobs(jobId).then(data => dataEditJob(data))
+                })
+            }
+            for (const btn of $$(".deleteBtn")) {
+                btn.addEventListener("click", () => {
+                    hideElement($("footer"))
+                    hideElement($(".mainContainer"))
+                    hideElement($(".containerEditJob"))
+                    showElement($("#alert"))
+                    const jobId = btn.getAttribute("data-id")
+                    $(".alertDeleteBtn").setAttribute("data-id", jobId)
                 })
             }
         
@@ -135,7 +160,11 @@ const generateOneCard = (job) => {
 }
 
 //Filters
+const filterJobsByProp = (array, prop, input) => {
+    return array.filter(operation => operation[prop] === input)
+}
 
+getJobs().then(data => console.log(data))
 
 
 // Events
@@ -148,6 +177,23 @@ $(".addJob").addEventListener("click", () => {
 $(".formNewJob").addEventListener("submit", (e) => {
     e.preventDefault()
     addJob()
+})
+
+$(".formEditJob").addEventListener("submit", (e) => {
+    e.preventDefault()
+    const jobId = $(".editJobSubmitBtn").getAttribute("data-id")
+    editJob(jobId)
+})
+
+$(".alertDeleteBtn").addEventListener("click", () => {
+    const jobId = $(".alertDeleteBtn").getAttribute("data-id")
+    deleteJob(jobId)
+    showElement($("footer"))
+})
+
+$(".alertCancelBtn").addEventListener("click", () => {
+    hideElement($("#alert"))
+    window.location.href = "index.html"
 })
 
 // getJobs().then(data => generateCards(filtros(data))
