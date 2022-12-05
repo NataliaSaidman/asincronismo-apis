@@ -19,9 +19,6 @@ const getJobs = async (jobId = "") => {
 
 getJobs().then(data => generateCards(data))
 
-    
-
-
 const addJob = () => {
     fetch(`${base_url}`, {
         method: "POST",
@@ -188,10 +185,6 @@ const generateOneCard = (job) => {
     }, 2000)
 }
 
-
-
-
-
 // Events
 
 $(".addJob").addEventListener("click", () => {
@@ -224,6 +217,12 @@ $(".alertCancelBtn").addEventListener("click", () => {
 $(".searchBtn").addEventListener("click", (e) =>{
     e.preventDefault(e)
     getJobs().then(data => generateCards(filterJobs(data)))
+})
+
+$(".clearBtn").addEventListener("click", (e) =>{
+    $(".formSearch").reset()
+    $(".cardsJobs").innerHTML = ""
+    window.location.href = "index.html"
 })
 
 
