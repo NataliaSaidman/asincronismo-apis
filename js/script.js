@@ -16,11 +16,10 @@ const getJobs = async (jobId = "") => {
     return jobs
 }
 
-const generateAllJobs = () =>{
-    getJobs().then(data => generateCards(data))
-}
+
+getJobs().then(data => generateCards(data))
+
     
-generateAllJobs()
 
 
 const addJob = () => {
@@ -54,9 +53,9 @@ const saveJob = () => {
         name: $("#jobTitle").value,
         image: $("#jobImg").value,
         description: $("#description").value,
-        location: $("#locationForm").value,
-        speciality: $("#specialityForm").value,
-        experience: $("#experienceForm").value,
+        location: $("#locationAdd").value,
+        speciality: $("#specialityAdd").value,
+        experience: $("#experienceAdd").value,
         review: $("#review").value
     }
 }
@@ -86,17 +85,25 @@ const dataEditJob = (job) => {
 
 //Filters
 
-const filterSpeciality = () => {
-    return `?speciality=${$("#speciality").value}`
+const filterJobsBy = (array, prop, value) => {
+    return array.filter(job => job[prop] === value)
 }
 
-$(".searchBtn").addEventListener("click", (e) =>{
-    e.preventDefault(e)
-    if($("#speciality").value === "especialidad"){
-        generateAllJobs()
-    } 
-    else getJobs(filterSpeciality()).then(data => generateCards(data))
-})
+const filterJobs = (data) => {
+    let arrayJobs = data
+    if($("#location").value !== "locacion"){
+        arrayJobs = filterJobsBy(arrayJobs, "location", $("#location").value)
+    }
+    if($("#speciality").value !== "especialidad"){
+        arrayJobs = filterJobsBy(arrayJobs, "speciality", $("#speciality").value)
+    }
+    if($("#experience").value !== "experiencia"){
+        arrayJobs = filterJobsBy(arrayJobs, "experience", $("#experience").value)
+    }
+    return arrayJobs
+}
+
+
 
 //DOM
 const generateCards = (jobs) => {
@@ -115,7 +122,7 @@ const generateCards = (jobs) => {
                         <span
                         class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
                         <span
-                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience}</span>
+                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience === "1" ? "Recibida" : `+ de ${experience} años`}</span>
                     </div>
                     <button
                     class="detailsBtn mt-2 px-4 py-2 text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Ver
@@ -151,7 +158,7 @@ const generateOneCard = (job) => {
                         <span
                         class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
                         <span
-                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience}</span>
+                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience === "1" ? "Recibida" : `+ de ${experience} años`}</span>
                     </div>
                     <button
                     class="editBtn mt-2 px-4 py-2 text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Editar</button>
@@ -213,5 +220,11 @@ $(".alertCancelBtn").addEventListener("click", () => {
     hideElement($("#alert"))
     window.location.href = "index.html"
 })
+
+$(".searchBtn").addEventListener("click", (e) =>{
+    e.preventDefault(e)
+    getJobs().then(data => generateCards(filterJobs(data)))
+})
+
 
 
