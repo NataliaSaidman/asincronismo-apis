@@ -6,19 +6,21 @@ const $$ = (selector) => document.querySelectorAll(selector)
 const hideElement = (selector) => selector.classList.add("hidden")
 const showElement = (selector) => selector.classList.remove("hidden")
 
+const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs/"
+
 //Functions GET, POST, PUT, DELETE
 
 const getJobs = async (jobId = "") => {
-    const response = await fetch(`https://637e11219c2635df8f97fc19.mockapi.io/jobs/${jobId}`)
+    const response = await fetch(`${base_url}${jobId}`)
     const jobs = await response.json()
     return jobs
 }
 
+
 getJobs().then(data => generateCards(data))
 
-
 const addJob = () => {
-    fetch("https://637e11219c2635df8f97fc19.mockapi.io/jobs", {
+    fetch(`${base_url}`, {
         method: "POST",
         headers: {
             'Content-Type': 'Application/json'
@@ -28,7 +30,7 @@ const addJob = () => {
 }
 
 const editJob = (jobId) => {
-    fetch(`https://637e11219c2635df8f97fc19.mockapi.io/jobs/${jobId}`, {
+    fetch(`${base_url}${jobId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'Application/json'
@@ -38,7 +40,7 @@ const editJob = (jobId) => {
 }
 
 const deleteJob = (jobId) => {
-    fetch(`https://637e11219c2635df8f97fc19.mockapi.io/jobs/${jobId}`, {
+    fetch(`${base_url}${jobId}`, {
         method: "DELETE"
     }).finally(() => window.location.href = "index.html")
 }
@@ -48,9 +50,9 @@ const saveJob = () => {
         name: $("#jobTitle").value,
         image: $("#jobImg").value,
         description: $("#description").value,
-        location: $("#locationForm").value,
-        speciality: $("#specialityForm").value,
-        experience: $("#experienceForm").value,
+        location: $("#locationAdd").value,
+        speciality: $("#specialityAdd").value,
+        experience: $("#experienceAdd").value,
         review: $("#review").value
     }
 }
@@ -78,8 +80,32 @@ const dataEditJob = (job) => {
     $("#editReview").value = job.review
 }
 
+//Filters
+
+const filterJobsBy = (array, prop, value) => {
+    return array.filter(job => job[prop] === value)
+}
+
+const filterJobs = (data) => {
+    let arrayJobs = data
+    if($("#location").value !== "locacion"){
+        arrayJobs = filterJobsBy(arrayJobs, "location", $("#location").value)
+    }
+    if($("#speciality").value !== "especialidad"){
+        arrayJobs = filterJobsBy(arrayJobs, "speciality", $("#speciality").value)
+    }
+    if($("#experience").value !== "experiencia"){
+        arrayJobs = filterJobsBy(arrayJobs, "experience", $("#experience").value)
+    }
+    return arrayJobs
+}
+
+
+
 //DOM
 const generateCards = (jobs) => {
+    $(".cardsJobs").innerHTML = ""
+    showElement($(".spinner"))
         setTimeout(() => {
             hideElement($(".spinner"))
             for (const { name, image, review, location, experience, speciality, id } of jobs) {
@@ -93,7 +119,7 @@ const generateCards = (jobs) => {
                         <span
                         class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
                         <span
-                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience}</span>
+                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience === "1" ? "Recibida" : `+ de ${experience} años`}</span>
                     </div>
                     <button
                     class="detailsBtn mt-2 px-4 py-2 text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Ver
@@ -129,7 +155,7 @@ const generateOneCard = (job) => {
                         <span
                         class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
                         <span
-                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience}</span>
+                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience === "1" ? "Recibida" : `+ de ${experience} años`}</span>
                     </div>
                     <button
                     class="editBtn mt-2 px-4 py-2 text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Editar</button>
@@ -158,14 +184,6 @@ const generateOneCard = (job) => {
         
     }, 2000)
 }
-
-//Filters
-const filterJobsByProp = (array, prop, input) => {
-    return array.filter(operation => operation[prop] === input)
-}
-
-getJobs().then(data => console.log(data))
-
 
 // Events
 
@@ -196,9 +214,16 @@ $(".alertCancelBtn").addEventListener("click", () => {
     window.location.href = "index.html"
 })
 
-// getJobs().then(data => generateCards(filtros(data))
+$(".searchBtn").addEventListener("click", (e) =>{
+    e.preventDefault(e)
+    getJobs().then(data => generateCards(filterJobs(data)))
+})
 
-// const filtros = (data) => {
-//     const filter = data
-//     search(filter)
-// }
+$(".clearBtn").addEventListener("click", (e) =>{
+    $(".formSearch").reset()
+    $(".cardsJobs").innerHTML = ""
+    window.location.href = "index.html"
+})
+
+
+
