@@ -6,7 +6,7 @@ const $$ = (selector) => document.querySelectorAll(selector)
 const hideElement = (selector) => selector.classList.add("hidden")
 const showElement = (selector) => selector.classList.remove("hidden")
 
-const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs/"
+const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs"
 
 //Functions GET, POST, PUT, DELETE
 
@@ -17,7 +17,14 @@ const getJobs = async (jobId = "") => {
 }
 
 
-getJobs().then(data => generateCards(data))
+getJobs().then(data => generateCards(data)).catch(() => {
+    setTimeout(() => {
+        $(".cardsJobs").innerHTML = ""
+        hideElement($(".spinner"))
+        showElement($(".errorMessage"))
+        console.log("aaaa");
+    }, 2000)
+})
 
 const addJob = () => {
     fetch(`${base_url}`, {
@@ -88,28 +95,45 @@ const filterJobsBy = (array, prop, value) => {
 
 const filterJobs = (data) => {
     let arrayJobs = data
-    if($("#location").value !== "locacion"){
+    if ($("#location").value !== "locacion") {
         arrayJobs = filterJobsBy(arrayJobs, "location", $("#location").value)
     }
-    if($("#speciality").value !== "especialidad"){
+    if ($("#speciality").value !== "especialidad") {
         arrayJobs = filterJobsBy(arrayJobs, "speciality", $("#speciality").value)
     }
-    if($("#experience").value !== "experiencia"){
+    if ($("#experience").value !== "experiencia") {
         arrayJobs = filterJobsBy(arrayJobs, "experience", $("#experience").value)
     }
     return arrayJobs
 }
 
+// Function alert Form
 
+const alertForm = (inputs, selects) => {
+    let validateForm = true
+    for (const input of inputs) {
+        if (input.value === "") {
+            validateForm = false
+            return alert(`Por favor, no deje casilleros sin completar`)
+        }
+    }
+    for (const select of selects) {
+        if (select.value === "locacion" || select.value === "especialidad" || select.value === "experiencia") {
+            validateForm = false
+            return alert(`Por favor, no deje etiquetas sin completar`)
+        }
+    }
+    return validateForm
+}
 
 //DOM
 const generateCards = (jobs) => {
     $(".cardsJobs").innerHTML = ""
     showElement($(".spinner"))
-        setTimeout(() => {
-            hideElement($(".spinner"))
-            for (const { name, image, review, location, experience, speciality, id } of jobs) {
-                $(".cardsJobs").innerHTML += `
+    setTimeout(() => {
+        hideElement($(".spinner"))
+        for (const { name, image, review, location, experience, speciality, id } of jobs) {
+            $(".cardsJobs").innerHTML += `
                 <div class="cardJob xl:w-1/5 lg:w-1/4 md:w-2/4 w-4/4 p-2 rounded border-2 border-stone-400 ml-2 mt-2">
                     <h1 class="text-xl">${name}</h1>
                     <img src="${image}" class="mt-2 w-full" alt="alimentos veganos">
@@ -126,16 +150,16 @@ const generateCards = (jobs) => {
                     detalles</button>
                 </div>
                 `
-            }
-            for (const btn of $$(".detailsBtn")) {
-                btn.addEventListener("click", () => {
-                    const jobId = btn.getAttribute("data-id")
-                    getJobs(jobId).then(data => generateOneCard(data))
-                })
-            }
+        }
+        for (const btn of $$(".detailsBtn")) {
+            btn.addEventListener("click", () => {
+                const jobId = btn.getAttribute("data-id")
+                getJobs(jobId).then(data => generateOneCard(data))
+            })
+        }
 
-        }, 2000)
-        
+    }, 2000)
+
 }
 
 const generateOneCard = (job) => {
@@ -163,25 +187,25 @@ const generateOneCard = (job) => {
                     class="deleteBtn mt-2 px-4 py-2 text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Eliminar</button>
                 </div>
             `
-            for (const btn of $$(".editBtn")) {
-                btn.addEventListener("click", () => {
-                    showElement($("#editJobForm"))
-                    const jobId = btn.getAttribute("data-id")
-                    $(".editJobSubmitBtn").setAttribute("data-id", jobId)
-                    getJobs(jobId).then(data => dataEditJob(data))
-                })
-            }
-            for (const btn of $$(".deleteBtn")) {
-                btn.addEventListener("click", () => {
-                    hideElement($("footer"))
-                    hideElement($(".mainContainer"))
-                    hideElement($(".containerEditJob"))
-                    showElement($("#alert"))
-                    const jobId = btn.getAttribute("data-id")
-                    $(".alertDeleteBtn").setAttribute("data-id", jobId)
-                })
-            }
-        
+        for (const btn of $$(".editBtn")) {
+            btn.addEventListener("click", () => {
+                showElement($("#editJobForm"))
+                const jobId = btn.getAttribute("data-id")
+                $(".editJobSubmitBtn").setAttribute("data-id", jobId)
+                getJobs(jobId).then(data => dataEditJob(data))
+            })
+        }
+        for (const btn of $$(".deleteBtn")) {
+            btn.addEventListener("click", () => {
+                hideElement($("footer"))
+                hideElement($(".mainContainer"))
+                hideElement($(".containerEditJob"))
+                showElement($("#alert"))
+                const jobId = btn.getAttribute("data-id")
+                $(".alertDeleteBtn").setAttribute("data-id", jobId)
+            })
+        }
+
     }, 2000)
 }
 
@@ -194,13 +218,17 @@ $(".addJob").addEventListener("click", () => {
 
 $(".formNewJob").addEventListener("submit", (e) => {
     e.preventDefault()
-    addJob()
+    if (alertForm($$(".inputsNewJob"), $$(".selectNewJob"))) {
+        addJob()
+    }
 })
 
 $(".formEditJob").addEventListener("submit", (e) => {
     e.preventDefault()
-    const jobId = $(".editJobSubmitBtn").getAttribute("data-id")
-    editJob(jobId)
+    if (alertForm($$(".inputsJobEdit"), $$(".selectEdit"))) {
+        const jobId = $(".editJobSubmitBtn").getAttribute("data-id")
+        editJob(jobId)
+    }
 })
 
 $(".alertDeleteBtn").addEventListener("click", () => {
@@ -214,12 +242,12 @@ $(".alertCancelBtn").addEventListener("click", () => {
     window.location.href = "index.html"
 })
 
-$(".searchBtn").addEventListener("click", (e) =>{
+$(".searchBtn").addEventListener("click", (e) => {
     e.preventDefault(e)
     getJobs().then(data => generateCards(filterJobs(data)))
 })
 
-$(".clearBtn").addEventListener("click", (e) =>{
+$(".clearBtn").addEventListener("click", (e) => {
     $(".formSearch").reset()
     $(".cardsJobs").innerHTML = ""
     window.location.href = "index.html"
