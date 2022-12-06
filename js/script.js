@@ -6,7 +6,7 @@ const $$ = (selector) => document.querySelectorAll(selector)
 const hideElement = (selector) => selector.classList.add("hidden")
 const showElement = (selector) => selector.classList.remove("hidden")
 
-const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs/"
+const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs"
 
 //Functions GET, POST, PUT, DELETE
 
@@ -17,7 +17,14 @@ const getJobs = async (jobId = "") => {
 }
 
 
-getJobs().then(data => generateCards(data))
+getJobs().then(data => generateCards(data)).catch(() => {
+    setTimeout(() => {
+        $(".cardsJobs").innerHTML = ""
+        hideElement($(".spinner"))
+        showElement($(".errorMessage"))
+        console.log("aaaa");
+    }, 2000)
+})
 
 const addJob = () => {
     fetch(`${base_url}`, {
@@ -114,7 +121,7 @@ const alertForm = (inputs, selects) => {
         if (select.value === "locacion" || select.value === "especialidad" || select.value === "experiencia") {
             validateForm = false
             return alert(`Por favor, no deje etiquetas sin completar`)
-        } 
+        }
     }
     return validateForm
 }
@@ -211,14 +218,14 @@ $(".addJob").addEventListener("click", () => {
 
 $(".formNewJob").addEventListener("submit", (e) => {
     e.preventDefault()
-    if(alertForm($$(".inputsNewJob"), $$(".selectNewJob"))){
+    if (alertForm($$(".inputsNewJob"), $$(".selectNewJob"))) {
         addJob()
     }
 })
 
 $(".formEditJob").addEventListener("submit", (e) => {
     e.preventDefault()
-    if(alertForm($$(".inputsJobEdit"), $$(".selectEdit"))){
+    if (alertForm($$(".inputsJobEdit"), $$(".selectEdit"))) {
         const jobId = $(".editJobSubmitBtn").getAttribute("data-id")
         editJob(jobId)
     }
