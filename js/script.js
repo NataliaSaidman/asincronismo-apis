@@ -131,19 +131,21 @@ const generateCards = (jobs) => {
         hideElement($(".spinner"))
         for (const { name, image, review, location, experience, speciality, id } of jobs) {
             $(".cardsJobs").innerHTML += `
-                <div class="cardJob xl:w-1/5 lg:w-1/4 md:w-2/4 w-4/4 p-2 rounded border-2 border-stone-400 ml-2 mt-2">
+                <div class="cardJob 2xl:w-1/5 xl:w-1/4 md:w-1/3 min-[768px]:w-2/5 w-4/4 p-2 rounded border-2 border-stone-400 ml-2 mt-2">
                     <h1 class="text-xl">${name}</h1>
-                    <img src="${image}" class="mt-2 w-full" alt="alimentos veganos">
+                    <div class="flex justify-center w-full">
+                        <img src="${image}" class="mt-2 w-[100px]" alt="alimentacion foto">
+                    </div>
                     <p class="mt-2 w-full">${review}</p>
                     <div class="flex mt-2 justify-start w-full max-[300px]:flex-col">
-                        <span class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
+                        <span class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
                         <span
-                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
+                        class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
                         <span
-                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience === "1" ? "Recibida" : `+ de ${experience} años`}</span>
+                        class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience === "1" ? "Recibida" : `+ de ${experience} años`}</span>
                     </div>
                     <button
-                    class="detailsBtn mt-2 px-4 py-2 text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Ver
+                    class="detailsBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Ver
                     detalles</button>
                 </div>
                 `
@@ -166,22 +168,24 @@ const generateOneCard = (job) => {
         hideElement($(".spinner"))
         const { name, image, review, location, experience, speciality, id, description } = job
         $(".oneJob").innerHTML = `
-                <div class="cardJob xl:w-3/5 md:w-2/4 w-full p-2 rounded border-2 border-stone-400 ml-2 mt-2 h-max">
+                <div class="cardJob 2xl:w-3/5 md:w-2/4 w-full p-2 rounded border-2 border-stone-400 md:ml-2 ml-0 mt-2 h-max">
                     <h1 class="text-xl">${name}</h1>
-                    <img src="${image}" class="mt-2 w-full" alt="alimentos veganos">
+                    <div class="flex justify-center w-full">
+                        <img src="${image}" class="mt-2 w-[200px]" alt="alimentacion foto">
+                    </div>
                     <p class="mt-2 w-full">${review}</p>
                     <p class="mt-2 w-full">${description}</p>
                     <div class="flex mt-2 justify-strat w-full max-[300px]:flex-col">
-                        <span class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
+                        <span class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
                         <span
-                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
+                        class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
                         <span
-                        class="bg-[#FF9F9F] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience === "1" ? "Recibida" : `+ de ${experience} años`}</span>
+                        class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${experience === "1" ? "Recibida" : `+ de ${experience} años`}</span>
                     </div>
                     <button
-                    class="editBtn mt-2 px-4 py-2 text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Editar</button>
+                    class="editBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Editar</button>
                     <button
-                    class="deleteBtn mt-2 px-4 py-2 text-white bg-[#DC3535] mr-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Eliminar</button>
+                    class="deleteBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Eliminar</button>
                 </div>
             `
         for (const btn of $$(".editBtn")) {
@@ -213,6 +217,7 @@ for(const addJob of $$(".addJob")){
         hideElement($(".mainContainer"))
         hideElement( $(".navbarMenu"))
         hideElement($(".xmark"))
+        hideElement($(".containerEditJob"))
         showElement($("#newJob"))
         showElement($(".navbarBurguer"))
     })
