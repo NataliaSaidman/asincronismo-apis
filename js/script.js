@@ -6,7 +6,7 @@ const $$ = (selector) => document.querySelectorAll(selector)
 const hideElement = (selector) => selector.classList.add("hidden")
 const showElement = (selector) => selector.classList.remove("hidden")
 
-const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs"
+const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs/"
 
 //Functions GET, POST, PUT, DELETE
 
@@ -16,14 +16,11 @@ const getJobs = async (jobId = "") => {
     return jobs
 }
 
-
 getJobs().then(data => generateCards(data)).catch(() => {
-    setTimeout(() => {
-        $(".cardsJobs").innerHTML = ""
-        hideElement($(".spinner"))
-        showElement($(".errorMessage"))
-        console.log("aaaa");
-    }, 2000)
+    showElement($("#errorMessage"))
+    hideElement($(".spinner"))
+    $(".cardsJobs").innerHTML = ""
+
 })
 
 const addJob = () => {
@@ -211,10 +208,15 @@ const generateOneCard = (job) => {
 
 // Events
 
-$(".addJob").addEventListener("click", () => {
-    hideElement(($(".mainContainer")))
-    showElement($("#newJob"))
-})
+for(const addJob of $$(".addJob")){
+    addJob.addEventListener("click", () => {
+        hideElement($(".mainContainer"))
+        hideElement( $(".navbarMenu"))
+        hideElement($(".xmark"))
+        showElement($("#newJob"))
+        showElement($(".navbarBurguer"))
+    })
+}
 
 $(".formNewJob").addEventListener("submit", (e) => {
     e.preventDefault()
@@ -253,5 +255,15 @@ $(".clearBtn").addEventListener("click", (e) => {
     window.location.href = "index.html"
 })
 
+$(".navbarBurguer").addEventListener("click", () => {
+    $(".navbarMenu").classList.remove("hidden")
+    hideElement($(".navbarBurguer"))
+    showElement($(".xmark"))
+})
 
+$(".xmark").addEventListener("click", () => {
+    $(".navbarMenu").classList.add("hidden")
+    showElement($(".navbarBurguer"))
+    hideElement($(".xmark"))
+})
 
