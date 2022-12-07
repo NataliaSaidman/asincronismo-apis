@@ -15,7 +15,7 @@
 <body class="font-['Noto_Sans']">
     <!-- Barra de navegación -->
     <header>
-        <nav class="lg:px-32 sm:px-6 lg:h-24 h-20 bg-[#B01E68] flex justify-between items-center font-['Noto_Sans']">
+        <nav class="xl:px-32 sm:px-6 lg:h-24 h-20 bg-[#B01E68] flex justify-between items-center font-['Noto_Sans']">
             <div class="flex flex-start">
                 <a href="" class="logo px-2 border-r-2 border-white">
                     <div class="flex flex-col md:w-60 w-40">
@@ -26,13 +26,13 @@
                 </a>
                 <img src="assets/2720940.png" class="w-12 ml-4" alt="">
             </div>
-            <div class="lg:hidden flex  items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4 navbarBurguer">
+            <div class="md:hidden flex  items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4 navbarBurguer">
                 <i class="md:text-2xl text-xl text-[#F49D1A] fa-solid fa-bars"></i>
             </div>
-            <div class="lg:hidden xmark hidden flex items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4">
-                <i class="md:text-2xl text-xl fa-solid fa-xmark"></i>
+            <div class="md:hidden xmark hidden flex items-center h-20 hover:bg-[#D3375C] cursor-pointer px-4">
+                <i class="md:text-2xl text-xl text-[#F49D1A] fa-solid fa-xmark"></i>
             </div>
-            <ul class="lg:flex hidden justify-end items-center">
+            <ul class="lg:flex md:block hidden justify-end items-center">
                 <li>
                     <a href="" name="home" class="text-xl text-white hover:text-[#F49D1A]">
                         Página principal </a>
@@ -44,26 +44,22 @@
             </ul>
         </nav>
         <!-- Barra de navegación responsive-->
-        <div class="lg:hidden navbarMenu hidden">
-            <ul class="flex flex-col bg-gray-200">
+        <div class="md:hidden navbarMenu w-full hidden flex justify-end">
+            <ul class="flex flex-col bg-white">
                 <li class="px-4 py-2 group text-lg hover:text-[#D3375C] transition duration-300">
-                    <a href="#" name="balance" class="linkNavbarBurger_balance max-w-full">
+                    <a href="" name="home" class="linkNavbarBurger_balance max-w-full">
                         <div class="flex items-center">
-                            <i class="mr-2 fa-solid fa-chart-line"></i>
+                            <i class="mr-2 fa-solid fa-house text-[#B01E68]"></i>
                             <p>Página principal</p>
                         </div>
-                        <span
-                            class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
                     </a>
                 </li>
                 <li class="px-4 py-2 text-lg group hover:text-[#D3375C] transition duration-300">
-                    <a href="#" name="categories" class="linkNavbarBurger_categories max-w-full">
+                    <a href="#" name="addJob" class="addJob linkNavbarBurger_categories max-w-full">
                         <div class="flex items-center">
-                            <i class="mr-2 fa-solid fa-tag"></i>
+                            <i class="mr-2 fa-sharp fa-solid fa-user-plus text-[#B01E68]"></i>
                             <p>Agregar trabajo</p>
                         </div>
-                        <span
-                            class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-[#D3375C]"></span>
                     </a>
                 </li>
             </ul>
@@ -245,9 +241,7 @@
     </div>
     <!--Mensaje de error-->
     <div id="errorMessage" class="hidden w-full flex justify-center mt-4">
-        <div class="flex w-4/5 alert-content flex p-2 rounded border-2 border-stone-400 ml-2 mt-2 bg-[#FFE15D]">
-            <p class="text-xl mt-2 text-[#C55300] font-semibold">No se encontraron resultados</p>
-        </div>
+            <p class="text-xl mt-2 text-black font-semibold">No se encontraron resultados</p>
     </div>
     <!--Footer-->
     <footer class=" w-full flex h-20 mt-6 bg-[#B01E68] justify-center items-center">
