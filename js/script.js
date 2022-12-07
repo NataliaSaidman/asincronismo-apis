@@ -6,7 +6,7 @@ const $$ = (selector) => document.querySelectorAll(selector)
 const hideElement = (selector) => selector.classList.add("hidden")
 const showElement = (selector) => selector.classList.remove("hidden")
 
-const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs"
+const base_url = "https://637e11219c2635df8f97fc19.mockapi.io/jobs/"
 
 //Functions GET, POST, PUT, DELETE
 
