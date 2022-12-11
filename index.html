@@ -12,7 +12,7 @@
     <title>Document</title>
 </head>
 
-<body class="font-['Noto_Sans']">
+<body class="font-sans">
     <!-- Barra de navegación -->
     <header>
         <nav class="xl:px-32 sm:px-6 lg:h-24 h-20 bg-[#5F8D4E] flex justify-between items-center font-['Noto_Sans']">
@@ -34,10 +34,12 @@
             <ul class="lg:flex lg:block hidden justify-end items-center">
                 <li>
                     <a href="" name="home" class="text-xl text-white hover:text-[#F49D1A]">
-                        Página principal </a>
+                        <i class="mr-2 fa-solid fa-magnifying-glass-dollar"></i>
+                        Buscar trabajo </a>
                 </li>
                 <li class="ml-5 mr-5">
                     <a href="#" name="addJob" class="addJob text-xl text-white hover:text-[#F49D1A]">
+                        <i class="mr-2 fa-solid fa-square-plus text-white"></i>
                         Agregar trabajo</a>
                 </li>
             </ul>
@@ -48,15 +50,15 @@
                 <li class="px-4 py-2 group text-lg hover:text-[#F49D1A] transition duration-300">
                     <a href="" name="home" class="linkNavbarBurger_balance max-w-full">
                         <div class="flex items-center">
-                            <i class="mr-2 fa-solid fa-house text-[#F49D1A]"></i>
-                            <p>Página principal</p>
+                            <i class="mr-2 fa-solid fa-magnifying-glass-dollar text-[#F49D1A]"></i>
+                            <p>Buscar trabajo</p>
                         </div>
                     </a>
                 </li>
                 <li class="px-4 py-2 text-lg group hover:text-[#F49D1A] transition duration-300">
                     <a href="#" name="addJob" class="addJob linkNavbarBurger_categories max-w-full">
                         <div class="flex items-center">
-                            <i class="mr-2 fa-sharp fa-solid fa-user-plus text-[#F49D1A]"></i>
+                            <i class="mr-2 fa-sharp fa-solid fa-square-plus text-[#F49D1A]"></i>
                             <p>Agregar trabajo</p>
                         </div>
                     </a>
@@ -70,7 +72,7 @@
           
         </section>
         <!-- Filtros de búsqueda -->
-        <section class="search mt-6">
+        <section class="search mt-6 min-h-fit">
             <form action="" class="formSearch flex flex-col">
                 <div class="flex justify-center md:flex-row flex-col w-full md:px-0 px-4">
                     <select name="" id="location" class="selectSearch md:w-1/5 p-2 rounded border-2 border-stone-400 ml-2">
@@ -98,10 +100,10 @@
                 </div>
                 <div class="flex justify-center mt-4">
                     <input
-                        class="searchBtn px-6 max-[375px]:px-5 h-[44px] text-white bg-[#F49D1A] mr-2 rounded  hover:bg-[#FF6D28] transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
+                        class="searchBtn px-6 max-[375px]:px-5 h-[44px] text-white bg-[#F49D1A] mr-2 rounded  hover:bg-[#FF6D28] hover:scale-105 cursor-pointer focus:outline-none focus:ring focus:ring-[#E5D9B6]"
                         type="submit" value="Búsqueda" />
                     <input
-                        class="clearBtn px-6 max-[375px]:px-5 h-[44px] text-[#F49D1A] bg-white border-solid border-2 border-[#F49D1A] rounded hover:bg-violet-300 transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-[#DC3535]"
+                        class="clearBtn px-6 max-[375px]:px-5 h-[44px] text-[#F49D1A] bg-white border-solid border-2 border-[#F49D1A] rounded hover:bg-[#F49D1A] hover:text-white hover:scale-105 cursor-pointer focus:outline-none focus:ring focus:ring-[#E5D9B6]"
                         type="submit" value="Limpiar" />
                 </div>
             </form>
@@ -111,9 +113,9 @@
             <img class="w-1/5" src="assets/fruits.gif" alt="">
         </section>
         <!-- Tarjetas de trabajo -->
-        <section class="flex w-full mt-6 px-4">
-            <div class="cardsJobs flex flex-wrap justify-center w-full">
-
+        <section class="flex w-full mt-6 px-4 ">
+            <div class="cardsJobs flex flex-wrap justify-center w-full min-h-screen">
+                
             </div>
         </section>
     </div>
@@ -165,12 +167,12 @@
         </section>
     </div>
     <!-- Sección editar trabajo-->
-    <div class="containerEditJob flex w-full flex-col xl:px-14 px-4 xl:justify-start justify-center">
-        <div class="oneJob xl:w-1/2 w-full xl:ml-11 ml-0 flex xl:justify-start justify-center">
+    <div class="containerEditJob hidden flex w-full flex-col xl:px-14 px-4 xl:justify-start justify-center items-start min-h-screen">
+        <div class="oneJob xl:w-3/5 w-full xl:ml-11 ml-0 flex xl:justify-start justify-center">
 
         </div>
-        <div id="editJobForm" class="hidden sectionEditJob w-full flex xl:justify-start justify-center xl:ml-12 ml-0">
-                <form action="" class="formEditJob mt-2 flex flex-col md:w-4/5 w-full">
+        <div id="editJobForm" class="hidden sectionEditJob w-full flex xl:justify-start justify-center xl:ml-12 ml-0 mt-6">
+                <form action="" class="formEditJob flex flex-col md:w-4/5 w-full">
                     <label for="jobEditTitle" class="mb-1 font-bold">Título del trabajo</label>
                     <input type="text" name="jobEditTitle" id="jobEditTitle" placeholder="Título del trabajo"
                         class="inputsJobEdit mb-2 p-2 rounded border-2 border-stone-400">
@@ -215,13 +217,13 @@
 
     <!-- Alert-->
     <div id="alert" class="hidden w-full flex justify-center mt-4">
-        <div class="flex w-4/5 alert-content flex p-2 rounded border-2 border-stone-400 ml-2 mt-2 bg-[#FFE15D]">
+        <div class="flex w-4/5 md:flex-row flex-col alert-content flex p-2 rounded border-2 border-stone-400 ml-2 mt-2 bg-[#FFE15D]">
             <p class="alertText text-xl mt-2 text-[#C55300] font-semibold">¿Estás seguro qué deseas eliminar este
                 trabajo?</p>
             <button
-                class="alertDeleteBtn px-4 py-2 text-white bg-[#FF7000] ml-4 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300">Eliminar</button>
+                class="alertDeleteBtn px-4 py-2 text-white bg-[#FF7000] md:ml-4 ml-0 md:mt-0 mt-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300">Eliminar</button>
             <button
-                class="alertCancelBtn px-4 py-2 text-white bg-gray-400 ml-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300">Cancelar</button>
+                class="alertCancelBtn px-4 py-2 text-white bg-gray-400 md:ml-2 ml-0 md:mt-0 mt-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300">Cancelar</button>
         </div>
     </div>
     <!--Mensaje de error-->
@@ -229,7 +231,7 @@
             <p class="text-xl mt-2 text-black font-semibold">No se encontraron resultados</p>
     </div>
     <!--Footer-->
-    <footer class=" w-full flex h-20 mt-6 bg-[#5F8D4E] justify-center items-center">
+    <footer class=" w-full flex h-24 mt-6 bg-[#5F8D4E] justify-center items-center">
         <div class="flex flex-col">
             <ul class="flex justify-around text-white text-xl">
                 <li>
