@@ -21,7 +21,7 @@ getJobs()
   .catch(() => {
     showElement($("#errorMessage"));
     hideElement($(".spinner"));
-    $(".cardsJobs").innerHTML = "";
+    hideElement($(".sectionCardsJob"));
   });
 
 const addJob = () => {
@@ -31,7 +31,9 @@ const addJob = () => {
       "Content-Type": "Application/json",
     },
     body: JSON.stringify(saveJob()),
-  }).finally(() => (window.location.href = "index.html"));
+  })
+    .catch(() => alert(`No se pudo enviar la información`))
+    .finally(() => (window.location.href = "index.html"));
 };
 
 const editJob = (jobId) => {
@@ -41,13 +43,17 @@ const editJob = (jobId) => {
       "Content-Type": "Application/json",
     },
     body: JSON.stringify(saveEditJob()),
-  }).finally(() => (window.location.href = "index.html"));
+  })
+    .catch(() => alert(`Ocurrió un error`))
+    .finally(() => (window.location.href = "index.html"));
 };
 
 const deleteJob = (jobId) => {
   fetch(`${base_url}${jobId}`, {
     method: "DELETE",
-  }).finally(() => (window.location.href = "index.html"));
+  })
+    .catch(() => alert(`Ocurrió un error`))
+    .finally(() => (window.location.href = "index.html"));
 };
 
 const saveJob = () => {
@@ -170,7 +176,9 @@ const generateCards = (jobs) => {
     for (const btn of $$(".detailsBtn")) {
       btn.addEventListener("click", () => {
         const jobId = btn.getAttribute("data-id");
-        getJobs(jobId).then((data) => generateOneCard(data));
+        getJobs(jobId)
+          .then((data) => generateOneCard(data))
+          .catch(() => alert(`No se encontraron resultados`));
       });
     }
   }, 2000);
@@ -223,7 +231,9 @@ const generateOneCard = (job) => {
         showElement($("#editJobForm"));
         const jobId = btn.getAttribute("data-id");
         $(".editJobSubmitBtn").setAttribute("data-id", jobId);
-        getJobs(jobId).then((data) => dataEditJob(data));
+        getJobs(jobId)
+          .then((data) => dataEditJob(data))
+          .catch(() => alert(`No se encontraron resultados`));
       });
     }
     for (const btn of $$(".deleteBtn")) {
@@ -280,7 +290,9 @@ $(".alertCancelBtn").addEventListener("click", () => {
 
 $(".searchBtn").addEventListener("click", (e) => {
   e.preventDefault(e);
-  getJobs().then((data) => generateCards(filterJobs(data)));
+  getJobs()
+    .then((data) => generateCards(filterJobs(data)))
+    .catch(() => alert(`No se encontraron resultados`));
 });
 
 $(".clearBtn").addEventListener("click", (e) => {
