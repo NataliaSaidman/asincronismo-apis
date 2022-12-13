@@ -21,7 +21,7 @@ getJobs()
   .catch(() => {
     showElement($("#errorMessage"));
     hideElement($(".spinner"));
-    $(".cardsJobs").innerHTML = "";
+    hideElement($(".sectionCardsJobs"));
   });
 
 const addJob = () => {
@@ -31,7 +31,9 @@ const addJob = () => {
       "Content-Type": "Application/json",
     },
     body: JSON.stringify(saveJob()),
-  }).finally(() => (window.location.href = "index.html"));
+  })
+    .catch(() => alert(`No se pudo enviar la información`))
+    .finally(() => (window.location.href = "index.html"));
 };
 
 const editJob = (jobId) => {
@@ -41,13 +43,17 @@ const editJob = (jobId) => {
       "Content-Type": "Application/json",
     },
     body: JSON.stringify(saveEditJob()),
-  }).finally(() => (window.location.href = "index.html"));
+  })
+    .catch(() => alert(`Ocurrió un error`))
+    .finally(() => (window.location.href = "index.html"));
 };
 
 const deleteJob = (jobId) => {
   fetch(`${base_url}${jobId}`, {
     method: "DELETE",
-  }).finally(() => (window.location.href = "index.html"));
+  })
+    .catch(() => alert(`Ocurrió un error`))
+    .finally(() => (window.location.href = "index.html"));
 };
 
 const saveJob = () => {
@@ -102,6 +108,11 @@ const filterJobs = (data) => {
   if ($("#experience").value !== "experiencia") {
     arrayJobs = filterJobsBy(arrayJobs, "experience", $("#experience").value);
   }
+  if (arrayJobs.length === 0) {
+    setTimeout(() => {
+      alert("No se encontraon los resultados");
+    }, 2000);
+  }
   return arrayJobs;
 };
 
@@ -143,8 +154,8 @@ const generateCards = (jobs) => {
       speciality,
       id,
     } of jobs) {
-      $(".cardsJobs").innerHTML += `
-                <div class="cardJob 2xl:w-1/5 xl:w-1/4 md:w-1/3 min-[768px]:w-2/5 min-[540px]:w-4/5 w-full p-2 rounded-lg border-2 border-stone-400 sm:ml-2 ml-0 mt-2">
+      $(".cardsJobs").innerHTML += ` 
+                <div class="cardJob bg-white 2xl:w-1/5 xl:w-1/4 md:w-1/3 min-[768px]:w-2/5 min-[540px]:w-4/5 w-full p-2 rounded-lg border-2 border-stone-400 sm:ml-2 ml-0 mt-2">
                     <h1 class="text-xl text-center">${name}</h1>
                     <div class="flex justify-center w-full">
                         <img src="${image}" class="mt-2 w-[100px]" alt="alimentacion foto">
@@ -164,25 +175,26 @@ const generateCards = (jobs) => {
                     <button
                     class="detailsBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Ver
                     detalles</button>
-                </div>
-                `;
+                </div>`;
     }
     for (const btn of $$(".detailsBtn")) {
       btn.addEventListener("click", () => {
         const jobId = btn.getAttribute("data-id");
-        getJobs(jobId).then((data) => generateOneCard(data));
+        getJobs(jobId)
+          .then((data) => generateOneCard(data))
+          .catch(() => alert(`No se encontraron resultados`));
       });
     }
   }, 2000);
 };
 
 const generateOneCard = (job) => {
-  hideElement($(".cardsJobs"));
-  hideElement($(".search"));
+  $(".cardsJobs").innerHTML = "";
   showElement($(".spinner"));
-  showElement($(".containerEditJob"));
+  hideElement($(".search"));
   setTimeout(() => {
-    hideElement($(".spinner"));
+    showElement($(".containerEditJob"));
+    hideElement($(".mainContainer"));
     const {
       name,
       image,
@@ -194,7 +206,7 @@ const generateOneCard = (job) => {
       description,
     } = job;
     $(".oneJob").innerHTML = `
-                <div class="cardJob 2xl:w-3/5 md:w-2/4 w-full p-2 rounded-lg border-2 border-stone-400 md:ml-2 ml-0 mt-2 h-max">
+                <div class="cardJob bg-white 2xl:w-3/5 md:w-2/4 w-full p-2 rounded-lg border-2 border-[#5F8D4E] md:ml-2 ml-0 mt-2 h-max">
                     <h1 class="text-xl text-center text-2xl">${name}</h1>
                     <div class="flex justify-center w-full">
                         <img src="${image}" class="mt-2 w-[200px]" alt="alimentacion foto">
@@ -212,18 +224,26 @@ const generateOneCard = (job) => {
                             : `+ de ${experience} años`
                         }</span>
                     </div>
-                    <button
-                    class="editBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Editar</button>
-                    <button
-                    class="deleteBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Eliminar</button>
+                    <div class="flex justify-between">
+                      <div>
+                        <button
+                        class="editBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Editar</button>
+                        <button
+                        class="deleteBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Eliminar</button>
+                    </div>
+                      <button class="backHomeBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300"><i class="text-white text-2xl text-end fa-solid fa-arrow-left"></i></button>
+                    </div>
                 </div>
             `;
     for (const btn of $$(".editBtn")) {
       btn.addEventListener("click", () => {
         showElement($("#editJobForm"));
+        $(".oneJob").classList.remove("min-h-screen");
         const jobId = btn.getAttribute("data-id");
         $(".editJobSubmitBtn").setAttribute("data-id", jobId);
-        getJobs(jobId).then((data) => dataEditJob(data));
+        getJobs(jobId)
+          .then((data) => dataEditJob(data))
+          .catch(() => alert(`No se encontraron resultados`));
       });
     }
     for (const btn of $$(".deleteBtn")) {
@@ -234,6 +254,11 @@ const generateOneCard = (job) => {
         showElement($("#alert"));
         const jobId = btn.getAttribute("data-id");
         $(".alertDeleteBtn").setAttribute("data-id", jobId);
+      });
+    }
+    for (const btn of $$(".backHomeBtn")) {
+      btn.addEventListener("click", () => {
+        window.location.href = "index.html";
       });
     }
   }, 2000);
@@ -280,7 +305,9 @@ $(".alertCancelBtn").addEventListener("click", () => {
 
 $(".searchBtn").addEventListener("click", (e) => {
   e.preventDefault(e);
-  getJobs().then((data) => generateCards(filterJobs(data)));
+  getJobs()
+    .then((data) => generateCards(filterJobs(data)))
+    .catch(() => alert(`No se encontraron resultados`));
 });
 
 $(".clearBtn").addEventListener("click", (e) => {
