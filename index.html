@@ -40,7 +40,7 @@
                 </li>
                 <li class="ml-5 mr-5">
                     <a href="#" name="addJob" class="addJob text-xl text-white hover:text-[#F49D1A]">
-                        <i class="mr-2 fa-solid fa-square-plus text-white"></i>
+                        <i class="mr-2 fa-solid fa-square-plus text-white hover:text-[#F49D1A]"></i>
                         Agregar trabajo</a>
                 </li>
             </ul>
@@ -209,9 +209,14 @@
                         <option value="2">Más de 2 años</option>
                         <option value="5">Más de 5 años</option>
                     </select>
-                    <input
-                        class="editJobSubmitBtn xl:w-1/5 w-3/5 px-6 max-[375px]:px-5 h-[44px] text-white bg-[#5F8D4E] hover:bg-[#285430] mr-2 mt-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
-                        type="submit" value="Editar" />
+                    <div class="flex">
+                        <input
+                            class="editJobSubmitBtn md:w-1/6 w-2/5 px-6 max-[375px]:px-5 h-[44px] text-white bg-[#5F8D4E] hover:bg-[#285430] hover:text-[#F49D1A] mr-2 mt-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
+                            type="submit" value="Editar" />
+                        <input
+                            class="cancelEditJobBtn md:w-1/6 w:2/5 px-6 max-[375px]:px-5 h-[44px] text-white bg-[#5F8D4E] hover:bg-[#285430] hover:text-[#F49D1A] mr-2 mt-2 rounded transition duration-100 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300"
+                            type="submit" value="Cancelar" />
+                    </div>
                 </form>
         </div>
     </div>

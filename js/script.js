@@ -108,11 +108,6 @@ const filterJobs = (data) => {
   if ($("#experience").value !== "experiencia") {
     arrayJobs = filterJobsBy(arrayJobs, "experience", $("#experience").value);
   }
-  if (arrayJobs.length === 0) {
-    setTimeout(() => {
-      alert("No se encontraon los resultados");
-    }, 2000);
-  }
   return arrayJobs;
 };
 
@@ -143,18 +138,32 @@ const alertForm = (inputs, selects) => {
 const generateCards = (jobs) => {
   $(".cardsJobs").innerHTML = "";
   showElement($(".spinner"));
-  setTimeout(() => {
-    hideElement($(".spinner"));
-    for (const {
-      name,
-      image,
-      review,
-      location,
-      experience,
-      speciality,
-      id,
-    } of jobs) {
-      $(".cardsJobs").innerHTML += ` 
+  jobs.length === 0
+    ? setTimeout(() => {
+        hideElement($(".spinner"));
+        $(
+          ".cardsJobs"
+        ).innerHTML = `<div class="flex rounded-lg border-2 border-stone-400 p-2 items-center">
+              <div class="flex flex-col">
+                <p class="md:text-4xl text-xl font-bold text-[#5F8D4E]">No encontramos lo qué estas buscando</p>
+                <span class="md:text-xl text-base mt-2">Probá seleccionando otras opciones</span>
+              </div>
+              <img src="./assets/not-found.png" class="md:w-[200px] w-[120px] min-[280px]:w-[100px]" alt="not-found"/>
+            </div>
+          `;
+      }, 2000)
+    : setTimeout(() => {
+        hideElement($(".spinner"));
+        for (const {
+          name,
+          image,
+          review,
+          location,
+          experience,
+          speciality,
+          id,
+        } of jobs) {
+          $(".cardsJobs").innerHTML += ` 
                 <div class="cardJob bg-white 2xl:w-1/5 xl:w-1/4 md:w-1/3 min-[768px]:w-2/5 min-[540px]:w-4/5 w-full p-2 rounded-lg border-2 border-stone-400 sm:ml-2 ml-0 mt-2">
                     <h1 class="text-xl text-center">${name}</h1>
                     <div class="flex justify-center w-full">
@@ -176,16 +185,16 @@ const generateCards = (jobs) => {
                     class="detailsBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Ver
                     detalles</button>
                 </div>`;
-    }
-    for (const btn of $$(".detailsBtn")) {
-      btn.addEventListener("click", () => {
-        const jobId = btn.getAttribute("data-id");
-        getJobs(jobId)
-          .then((data) => generateOneCard(data))
-          .catch(() => alert(`No se encontraron resultados`));
-      });
-    }
-  }, 2000);
+        }
+        for (const btn of $$(".detailsBtn")) {
+          btn.addEventListener("click", () => {
+            const jobId = btn.getAttribute("data-id");
+            getJobs(jobId)
+              .then((data) => generateOneCard(data))
+              .catch(() => alert(`No se encontraron resultados`));
+          });
+        }
+      }, 2000);
 };
 
 const generateOneCard = (job) => {
@@ -195,25 +204,16 @@ const generateOneCard = (job) => {
   setTimeout(() => {
     showElement($(".containerEditJob"));
     hideElement($(".mainContainer"));
-    const {
-      name,
-      image,
-      review,
-      location,
-      experience,
-      speciality,
-      id,
-      description,
-    } = job;
+    const { name, image, location, experience, speciality, id, description } =
+      job;
     $(".oneJob").innerHTML = `
-                <div class="cardJob bg-white 2xl:w-3/5 md:w-2/4 w-full p-2 rounded-lg border-2 border-[#5F8D4E] md:ml-2 ml-0 mt-2 h-max">
-                    <h1 class="text-xl text-center text-2xl">${name}</h1>
+                <div class="cardJob bg-white xl:w-4/5 md:w-3/4 w-full p-2 rounded-lg border-2 border-[#5F8D4E] md:ml-2 ml-0 mt-2 h-max mb-2">
+                    <h1 class="text-2xl text-center">${name}</h1>
                     <div class="flex justify-center w-full">
                         <img src="${image}" class="mt-2 w-[200px]" alt="alimentacion foto">
                     </div>
-                    <p class="mt-2 w-full">${review}</p>
                     <p class="mt-2 w-full">${description}</p>
-                    <div class="flex mt-2 justify-strat w-full max-[300px]:flex-col">
+                    <div class="flex mt-4 justify-strat w-full max-[300px]:flex-col">
                         <span class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
                         <span
                         class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
@@ -224,14 +224,14 @@ const generateOneCard = (job) => {
                             : `+ de ${experience} años`
                         }</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between mt-2">
                       <div>
                         <button
-                        class="editBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Editar</button>
+                        class="editBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] hover:text-[#F49D1A] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Editar</button>
                         <button
-                        class="deleteBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Eliminar</button>
+                        class="deleteBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] hover:text-[#F49D1A] focus:outline-none focus:ring focus:ring-violet-300" data-id="${id}">Eliminar</button>
                     </div>
-                      <button class="backHomeBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300"><i class="text-white text-2xl text-end fa-solid fa-arrow-left"></i></button>
+                      <button class="backHomeBtn mt-2 px-4 py-2 text-white bg-[#5F8D4E] mr-2 rounded transition duration-100 cursor-pointer hover:bg-[#285430] focus:outline-none focus:ring focus:ring-violet-300"><i class="text-white text-2xl text-end hover:text-[#F49D1A] fa-solid fa-arrow-left"></i></button>
                     </div>
                 </div>
             `;
@@ -314,6 +314,12 @@ $(".clearBtn").addEventListener("click", (e) => {
   $(".formSearch").reset();
   $(".cardsJobs").innerHTML = "";
   window.location.href = "index.html";
+});
+
+$(".cancelEditJobBtn").addEventListener("click", (e) => {
+  e.preventDefault(e);
+  hideElement($("#editJobForm"));
+  $(".oneJob").classList.add("min-h-screen");
 });
 
 $(".navbarBurguer").addEventListener("click", () => {
