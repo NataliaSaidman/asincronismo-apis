@@ -169,8 +169,8 @@ const generateCards = (jobs) => {
                     <div class="flex justify-center w-full">
                         <img src="${image}" class="mt-2 w-[100px]" alt="alimentacion foto">
                     </div>
-                    <p class="mt-2 w-full">${review}</p>
-                    <div class="flex mt-2 justify-start w-full max-[300px]:flex-col">
+                    <p class="mt-2 w-full xl:text-left text-center">${review}</p>
+                    <div class="flex mt-2 justify-start w-full max-[300px]:flex-col max-[300px]:items-center">
                         <span class="bg-[#E5D9B6] text-center text-black font-bold text-xs px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
                         <span
                         class="bg-[#E5D9B6] text-center text-black text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
@@ -207,18 +207,18 @@ const generateOneCard = (job) => {
     const { name, image, location, experience, speciality, id, description } =
       job;
     $(".oneJob").innerHTML = `
-                <div class="cardJob bg-white xl:w-4/5 md:w-3/4 w-full p-2 rounded-lg border-2 border-[#5F8D4E] md:ml-2 ml-0 mt-2 h-max mb-2">
+                <div class="cardJob bg-white lg:w-3/5 md:w-3/4 w-full p-2 rounded-lg border-2 border-[#5F8D4E] md:ml-2 ml-0 mt-2 h-max mb-2">
                     <h1 class="text-2xl text-center">${name}</h1>
                     <div class="flex justify-center w-full">
                         <img src="${image}" class="mt-2 w-[200px]" alt="alimentacion foto">
                     </div>
-                    <p class="mt-2 w-full">${description}</p>
+                    <p class="mt-2 w-full text-justify">${description}</p>
                     <div class="flex mt-4 justify-strat w-full max-[300px]:flex-col">
-                        <span class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
+                        <span class="bg-[#E5D9B6] text-center text-black md:text-sm text-xs font-bold px-2 py-1 rounded w-1/3 max-[300px]:w-2/3">${location}</span>
                         <span
-                        class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
+                        class="bg-[#E5D9B6] text-center text-black md:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${speciality}</span>
                         <span
-                        class="bg-[#E5D9B6] text-center text-black xl:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${
+                        class="bg-[#E5D9B6] text-center text-black md:text-sm text-xs font-bold px-2 py-1 rounded  w-1/3 ml-1 max-[300px]:w-2/3 max-[300px]:ml-0 max-[300px]:mt-2">${
                           experience === "1"
                             ? "Recibida"
                             : `+ de ${experience} años`
