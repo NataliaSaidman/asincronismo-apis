@@ -41,7 +41,7 @@ Nutris en Acción por la salud integral, es una aplicación pensada para facilit
 - JAVASCRIPT    
 
 ## Vínculo 🌎
-[👉 Hace click acá para visitarlo]         
+[👉 Hace click acá para visitarlo] https://nataliasaidman.github.io/asincronismo-apis/         
      
 💻 con &#128154; por Natalia Saidman 😘
     
