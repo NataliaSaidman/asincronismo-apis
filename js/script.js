@@ -188,6 +188,7 @@ const generateCards = (jobs) => {
         }
         for (const btn of $$(".detailsBtn")) {
           btn.addEventListener("click", () => {
+            window.scroll(0, 0);
             const jobId = btn.getAttribute("data-id");
             getJobs(jobId)
               .then((data) => generateOneCard(data))
@@ -238,6 +239,7 @@ const generateOneCard = (job) => {
     for (const btn of $$(".editBtn")) {
       btn.addEventListener("click", () => {
         showElement($("#editJobForm"));
+        window.scroll(0, 400);
         $(".oneJob").classList.remove("min-h-screen");
         const jobId = btn.getAttribute("data-id");
         $(".editJobSubmitBtn").setAttribute("data-id", jobId);
@@ -319,6 +321,7 @@ $(".clearBtn").addEventListener("click", (e) => {
 $(".cancelEditJobBtn").addEventListener("click", (e) => {
   e.preventDefault(e);
   hideElement($("#editJobForm"));
+  window.scroll(0, 0);
   $(".oneJob").classList.add("min-h-screen");
 });
 
